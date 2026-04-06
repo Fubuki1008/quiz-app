@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>クイズアプリ</title>
+  <link rel="stylesheet" href="./css/ress.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rampart+One&display=swap" rel="stylesheet">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Train+One&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+
+<body>
+  <div id="app">
+
+    <h1 id="quizTitle">クイズを選択してください</h1>
+    <!-- 選択によってタイトル変更 -->
+
+
+
+  </div>
+
+  <!-- 開始画面 -->
+  <div id="startScreen">
+    <p>
+      <span class="easy">とてもかんたん</span><br />30個ある問題の中からランダムに10問出題されます。<br />全問正解を目指そう！
+    </p>
+    <p>問題ジャンルを選択してください</p>
+    <div id="startCategoryButtons" class="start-category-buttons"></div>
+
+    <div id="editorEntry" class="editor-entry hidden">
+      <button id="openEditorButton" type="button">問題を管理する</button>
+      <p id="editorEntryNote" class="editor-entry-note">Electron 版では問題の追加・修正・削除ができます。</p>
+    </div>
+
+    <section id="adminLoginPanel" class="admin-login-panel hidden" aria-label="管理者ログイン">
+      <h2>管理者ログイン</h2>
+      <p id="adminLoginStatus" class="editor-status">編集画面に入るには管理者ログインが必要です。</p>
+
+      <label for="adminUsernameInput">ユーザー名</label>
+      <input id="adminUsernameInput" type="text" autocomplete="username" />
+
+      <label for="adminPasswordInput">パスワード</label>
+      <input id="adminPasswordInput" type="password" autocomplete="current-password" />
+
+      <div class="admin-login-actions">
+        <button id="adminLoginButton" type="button">ログイン</button>
+        <button id="adminLoginCancelButton" type="button" class="secondary-button">キャンセル</button>
+      </div>
+    </section>
+
+    <section id="questionEditorPanel" class="question-editor hidden" aria-label="問題管理パネル">
+      <div class="question-editor-header">
+        <div>
+          <h2>問題管理</h2>
+          <p id="editorStatusMessage" class="editor-status">問題データを安全に更新できます。</p>
+        </div>
+        <div class="editor-header-actions">
+          <button id="logoutEditorButton" type="button" class="secondary-button">ログアウト</button>
+          <button id="closeEditorButton" type="button" class="secondary-button">閉じる</button>
+        </div>
+      </div>
+
+      <div class="question-editor-controls">
+        <label for="editorCategorySelect">編集ジャンル</label>
+        <select id="editorCategorySelect"></select>
+        <button id="newQuestionButton" type="button" class="secondary-button">新しい問題を作成</button>
+      </div>
+
+      <section class="category-management-panel" aria-label="問題種別管理">
+        <div class="question-form-header">
+          <h3>問題種別を追加</h3>
+          <p class="question-form-note">追加すると開始画面と編集ジャンルに自動で表示されます。</p>
+        </div>
+        <label for="newCategoryNameInput">問題種別名</label>
+        <input id="newCategoryNameInput" type="text" placeholder="例: React" />
+        <div class="question-editor-actions">
+          <button id="addCategoryButton" type="button">問題種別を追加</button>
+        </div>
+        <label for="renameCategoryNameInput">選択中の問題種別名</label>
+        <input id="renameCategoryNameInput" type="text" placeholder="選択中の種別名を変更" />
+        <div class="question-editor-actions">
+          <button id="renameCategoryButton" type="button" class="secondary-button">問題種別名を変更</button>
+          <button id="deleteCategoryButton" type="button" class="danger-button">選択中の問題種別を削除</button>
+        </div>
+        <p id="categoryActionStatus" class="editor-status hidden" aria-live="polite"></p>
+      </section>
+
+      <div class="question-editor-layout">
+        <aside class="question-list-panel">
+          <p class="question-list-title">登録済み問題</p>
+          <ul id="editorQuestionList" class="editor-question-list"></ul>
+        </aside>
+
+        <div class="question-form-panel">
+          <div class="question-form-header">
+            <h3 id="editorFormTitle">新しい問題</h3>
+            <p class="question-form-note">選択肢は 1 行に 1 件入力し、正解は選択肢の中に含めてください。</p>
+          </div>
+
+          <label for="editorQuestionInput">問題文</label>
+          <textarea id="editorQuestionInput" rows="3"></textarea>
+
+          <label for="editorChoicesInput">選択肢</label>
+          <textarea id="editorChoicesInput" rows="8" placeholder="1 行に 1 つずつ入力"></textarea>
+
+          <label for="editorAnswerInput">正解</label>
+          <input id="editorAnswerInput" type="text" />
+
+          <label for="editorTagsInput">タグ</label>
+          <input id="editorTagsInput" type="text" placeholder="カンマ区切りで入力" />
+
+          <label for="editorExplanationInput">解説</label>
+          <textarea id="editorExplanationInput" rows="6"></textarea>
+
+          <div class="question-editor-actions">
+            <button id="saveQuestionButton" type="button">保存</button>
+            <button id="deleteQuestionButton" type="button" class="danger-button">削除</button>
+          </div>
+        </div>
+      </div>
+
+      <section id="storageHelpPanel" class="storage-help-panel hidden" aria-label="保存場所と削除方法">
+        <h3>保存場所と削除方法</h3>
+        <p class="storage-help-copy">
+          問題データ、履歴、設定はアプリ専用フォルダに保存されます。アプリ本体を削除しても自動では消えません。
+        </p>
+        <p class="storage-help-copy">
+          完全に削除したい場合は、下のボタンを使うか、この保存先フォルダを削除してください。
+        </p>
+        <dl class="storage-path-list">
+          <div>
+            <dt>保存先フォルダ</dt>
+            <dd id="userDataPathText">読み込み中...</dd>
+          </div>
+          <div>
+            <dt>問題データ保存先</dt>
+            <dd id="questionDataPathText">読み込み中...</dd>
+          </div>
+        </dl>
+        <p id="storageActionStatus" class="editor-status hidden" aria-live="polite"></p>
+        <div class="storage-help-actions">
+          <button id="clearUserDataButton" type="button" class="danger-button">
+            ユーザーデータを削除
+          </button>
+        </div>
+      </section>
+    </section>
+  </div>
+
+  <!-- クイズ画面 -->
+  <div id="quizContainer" class="hidden">
+    <p id="progress">第1問 / 10問</p>
+    <!-- <img src="./image/e0723_1.png" alt=""> -->
+    <div class="q-img">
+      <p id="question"></p>
+    </div>
+    <div>
+
+      <!-- 何問目か表記 -->
+
+      <div id="choices"></div>
+      <p id="score">スコア: 0</p>
+    </div>
+  </div>
+
+  <!-- 終了時のカスタムポップアップ -->
+  <div id="resultPopup" class="popup hidden">
+    <div class="popup-content">
+      <p id="finalMessage"></p>
+      <p id="finalScore"></p>
+
+      <div class="result-tab-nav" role="tablist" aria-label="結果表示タブ">
+        <button id="tabAnalyticsButton" class="tab-button active" type="button" role="tab" aria-selected="true"
+          aria-controls="analyticsPanel">分野別正答率</button>
+        <button id="tabExplanationButton" class="tab-button" type="button" role="tab" aria-selected="false"
+          aria-controls="explanationTabPanel">問題と解説</button>
+        <button id="tabWrongNoteButton" class="tab-button" type="button" role="tab" aria-selected="false"
+          aria-controls="wrongNotePanel">間違いノート</button>
+      </div>
+
+      <div class="result-tab-panels">
+        <section id="analyticsPanel" class="tab-panel analytics-panel active" role="tabpanel"
+          aria-labelledby="tabAnalyticsButton">
+          <h3>分野別正答率</h3>
+          <ul id="categoryAccuracyList" class="analytics-list"></ul>
+
+          <h3>学習ダッシュボード</h3>
+          <div id="dashboardSummary" class="dashboard-grid"></div>
+          <div id="averageTimeChart" class="bar-chart"></div>
+
+          <h3>習熟度レベル</h3>
+          <p id="masterySummary" class="weak-tag-summary"></p>
+          <ul id="masteryLevelList" class="analytics-list"></ul>
+
+
+
+          <h3>苦手タグ分析</h3>
+          <div class="weak-tag-controls">
+            <label for="weakTagSortSelect">並び順</label>
+            <select id="weakTagSortSelect">
+              <option value="low" selected>正答率が低い順</option>
+              <option value="high">正答率が高い順</option>
+            </select>
+            <label class="checkbox-label" for="collapsePerfectTagsToggle">
+              <input id="collapsePerfectTagsToggle" type="checkbox" checked>
+              正答率100%タグを折りたたむ
+            </label>
+          </div>
+
+          <div class="weak-tag-tabs" role="tablist" aria-label="苦手タグ表示切替">
+            <button id="weakTagCurrentTabButton" class="weak-tag-tab active" type="button" role="tab"
+              aria-selected="true" aria-controls="weakTagCurrentPanel">今回の挑戦</button>
+            <button id="weakTagHistoryTabButton" class="weak-tag-tab" type="button" role="tab" aria-selected="false"
+              aria-controls="weakTagHistoryPanel">履歴累計</button>
+          </div>
+
+
+
+          <section id="weakTagHistoryPanel" class="weak-tag-panel" role="tabpanel"
+            aria-labelledby="weakTagHistoryTabButton">
+            <p id="perfectTagSummary" class="weak-tag-summary"></p>
+            <ul id="weakTagList" class="analytics-list"></ul>
+          </section>
+
+
+
+          <section id="weakTagCurrentPanel" class="weak-tag-panel active" role="tabpanel"
+            aria-labelledby="weakTagCurrentTabButton">
+            <p id="currentPerfectTagSummary" class="weak-tag-summary"></p>
+            <ul id="currentWeakTagList" class="analytics-list"></ul>
+          </section>
+
+          <div class="analytics-actions">
+            <button id="resetStatsButton" class="danger-button" type="button">履歴リセット</button>
+          </div>
+        </section>
+
+        <section id="explanationTabPanel" class="tab-panel" role="tabpanel" aria-labelledby="tabExplanationButton">
+          <div id="explanationList">
+            <h3>出題された問題と解説</h3>
+            <p>
+              正解は<span class="t-answer">青色</span>、不正解は<span class="f-answer">赤色</span>です
+            </p>
+            <ul id="explanationItems"></ul>
+          </div>
+        </section>
+
+        <section id="wrongNotePanel" class="tab-panel wrong-note-panel" role="tabpanel"
+          aria-labelledby="tabWrongNoteButton">
+          <h3>間違いノート（自動生成）</h3>
+          <textarea id="wrongNoteText" rows="8" readonly></textarea>
+          <div class="note-actions">
+            <button id="copyNoteButton" type="button">ノートをコピー</button>
+            <button id="downloadNoteButton" type="button">ノートを保存</button>
+          </div>
+        </section>
+      </div>
+
+      <div class="result-actions">
+        <button id="retryWrongButton" type="button">間違えた問題だけ復習</button>
+        <button id="retryAllButton" type="button">もう一度挑戦</button>
+        <button id="backToStartButton" class="floating-back-button" type="button">スタート画面に戻る</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="dist/script.js"></script>
+</body>
+
+</html>

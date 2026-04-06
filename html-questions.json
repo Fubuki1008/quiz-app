@@ -1,0 +1,626 @@
+[
+    {
+        "question": "ナビゲーションメニュー作る際に最も適切なタグはどれ？",
+        "choices": [
+            "head",
+            "html",
+            "body",
+            "div",
+            "title",
+            "meta",
+            "footer",
+            "section",
+            "nav",
+            "header"
+        ],
+        "answer": "nav",
+        "tags": [
+            "HTML",
+            "リンク・ナビ"
+        ],
+        "explanation": "[nav]タグはナビゲーションのセクションを表すタグ・要素です。<br>[nav]タグを指定することで、ページ内の指定の部分や他のページへのリンクを設定できます。"
+    },
+    {
+        "question": "HTMLのimgタグで__画像のURL__を指定する属性は？",
+        "choices": [
+            "href",
+            "src",
+            "alt",
+            "link",
+            "path",
+            "url",
+            "imgsrc",
+            "location",
+            "image",
+            "file"
+        ],
+        "answer": "src",
+        "tags": [
+            "HTML",
+            "メディア"
+        ],
+        "explanation": "[src]属性は画像ファイルのパスを指定するために使います。"
+    },
+    {
+        "question": "HTMLで__リンク__を作るタグは？",
+        "choices": [
+            "a",
+            "link",
+            "href",
+            "url",
+            "nav",
+            "anchor",
+            "goto",
+            "jump",
+            "move",
+            "next"
+        ],
+        "answer": "a",
+        "tags": [
+            "HTML",
+            "リンク・ナビ"
+        ],
+        "explanation": "[a]タグは他のページや場所へのリンクを作成します。"
+    },
+    {
+        "question": "HTMLで__順不同リスト__を作るためのタグはどれ？",
+        "choices": [
+            "ul",
+            "li",
+            "ol",
+            "list",
+            "array",
+            "menu",
+            "section",
+            "orderlist",
+            "item",
+            "dl"
+        ],
+        "answer": "ul",
+        "tags": [
+            "HTML",
+            "リスト・表"
+        ],
+        "explanation": "[ul]は順序なしリストを作るためのタグです。<br>順序ありリストはolで作成します。"
+    },
+    {
+        "question": "HTMLにおいてaタグの役割は何ですか？",
+        "choices": [
+            "画像を表示する",
+            "見出しを作る",
+            "リンクを作る",
+            "表を作る",
+            "多数あるもののひとつを指すときに使われる不定冠詞",
+            "フォームを作る",
+            "スクリプトを読み込む",
+            "リストを作る",
+            "動画を埋め込む",
+            "ボタンを作る"
+        ],
+        "answer": "リンクを作る",
+        "tags": [
+            "HTML",
+            "リンク・ナビ"
+        ],
+        "explanation": "[a]タグはリンクを作成するHTMLの基本タグです。"
+    },
+    {
+        "question": "HTMLのフォームを作成するタグは？",
+        "choices": [
+            "input",
+            "textarea",
+            "select",
+            "button",
+            "form",
+            "label",
+            "fieldset",
+            "legend",
+            "output",
+            "datalist"
+        ],
+        "answer": "form",
+        "tags": [
+            "HTML",
+            "フォーム"
+        ],
+        "explanation": "[form]タグはフォーム全体を囲むためのタグです。"
+    },
+    {
+        "question": "HTMLでテーブルを作成するタグは？",
+        "choices": [
+            "table",
+            "grid",
+            "list",
+            "div",
+            "layout",
+            "form",
+            "tbody",
+            "thead",
+            "section",
+            "group"
+        ],
+        "answer": "table",
+        "tags": [
+            "HTML",
+            "リスト・表"
+        ],
+        "explanation": "[table]タグは表を作るための基本タグです。"
+    },
+    {
+        "question": "HTMLで__動画__を表示するタグは？",
+        "choices": [
+            "video",
+            "movie",
+            "media",
+            "iframe",
+            "embed",
+            "film",
+            "object",
+            "source",
+            "clip",
+            "stream"
+        ],
+        "answer": "video",
+        "tags": [
+            "HTML",
+            "メディア"
+        ],
+        "explanation": "[video]タグを使って動画を表示します。"
+    },
+    {
+        "question": "HTMLで画像に__代替テキスト__を設定する属性は？",
+        "choices": [
+            "alt",
+            "title",
+            "desc",
+            "caption",
+            "aria-label",
+            "text",
+            "name",
+            "tooltip",
+            "label",
+            "hint"
+        ],
+        "answer": "alt",
+        "tags": [
+            "HTML",
+            "メディア"
+        ],
+        "explanation": "[alt]属性には画像の代替テキストを指定します。"
+    },
+    {
+        "question": "HTMLで__説明リスト__を表すタグは？",
+        "choices": [
+            "dl",
+            "ol",
+            "ul",
+            "li",
+            "list",
+            "dt",
+            "dd",
+            "unorderlist",
+            "orderlist",
+            "exposition"
+        ],
+        "answer": "dl",
+        "tags": [
+            "HTML",
+            "リスト・表"
+        ],
+        "explanation": "[dl]タグはHTMLの要素で、説明リストを表します。[dt]タグは説明または定義リストの中で用語を表す部分であり、[dl] の子要素としてのみ用いることができます。[dd]タグは説明リスト要素 [dl] 内で、その前の用語 [dt] の説明、定義、値などを示します。設問は説明リストを表すタグについて聞いているので、[dl]が正解です。"
+    },
+    {
+        "question": "HTMLで__チェックボックスを作成__するための__input要素のtype__は？",
+        "choices": [
+            "checkbox",
+            "radio",
+            "text",
+            "button",
+            "switch",
+            "check",
+            "toggle",
+            "choice",
+            "input",
+            "select"
+        ],
+        "answer": "checkbox",
+        "tags": [
+            "HTML",
+            "フォーム"
+        ],
+        "explanation": "チェックボックスは[input type='checkbox']で作ります。"
+    },
+    {
+        "question": "外部CSSファイルをリンクする時の正しい記述は？",
+        "choices": [
+            "link rel='stylesheet' href='style.css'",
+            "style src='style.css'",
+            "script src='style.css'",
+            "link src='style.css'"
+        ],
+        "answer": "link rel='stylesheet' href='style.css'",
+        "tags": [
+            "HTML",
+            "リンク・ナビ"
+        ],
+        "explanation": "[link]タグでCSSファイルを読み込みます。"
+    },
+    {
+        "question": "記事やブログ投稿など__独立した内容の範囲を表す__タグは？",
+        "choices": [
+            "article",
+            "section",
+            "div",
+            "main",
+            "post",
+            "entry",
+            "aside",
+            "block",
+            "story",
+            "content"
+        ],
+        "answer": "article",
+        "tags": [
+            "HTML",
+            "文書構造"
+        ],
+        "explanation": "[article]タグは、独立して再利用可能なコンテンツ（記事やブログ投稿など）を示します。"
+    },
+    {
+        "question": "__補足情報やサイドコンテンツを示す__セマンティックなタグは？",
+        "choices": [
+            "aside",
+            "section",
+            "article",
+            "nav",
+            "footer",
+            "note",
+            "extra",
+            "info",
+            "comment",
+            "div"
+        ],
+        "answer": "aside",
+        "tags": [
+            "HTML",
+            "文書構造"
+        ],
+        "explanation": "[aside]タグは、主なコンテンツに関連する補足情報やサイドバーなどを表します。"
+    },
+    {
+        "question": "入力フォームで__必須入力__にしたい場合に使う属性は？",
+        "choices": [
+            "required",
+            "must",
+            "need",
+            "mandatory",
+            "fill",
+            "input",
+            "validate",
+            "necessary",
+            "force",
+            "check"
+        ],
+        "answer": "required",
+        "tags": [
+            "HTML",
+            "フォーム"
+        ],
+        "explanation": "[required]属性を付けると、必ず入力が必要になります。"
+    },
+    {
+        "question": "HTMLで文書の__最上位の大見出し__をマークアップするために最も適切なタグは？",
+        "choices": [
+            "h1",
+            "p",
+            "title",
+            "strong",
+            "text",
+            "main",
+            "h4",
+            "h6",
+            "div",
+            "body"
+        ],
+        "answer": "h1",
+        "tags": [
+            "HTML",
+            "文書構造"
+        ],
+        "explanation": "見出しタグはh1~h6タグまで使うことができ、h1→h2→h3→h4→h5→h6の順番に大見出し、中見出し、小見出しというように階層が深くなっていきます。<br>[h1]タグは、ページの構造に最も上位の見出しです。"
+    },
+    {
+        "question": "HTMLで下記のような__番号付きリスト__を作成するためのタグは？<br>1.〇〇<br>2.〇〇<br>...",
+        "choices": [
+            "ul",
+            "ol",
+            "li",
+            "list",
+            "menu",
+            "unordered",
+            "dl",
+            "items",
+            "group",
+            "unorderlist"
+        ],
+        "answer": "ol",
+        "tags": [
+            "HTML",
+            "リスト・表"
+        ],
+        "explanation": "[ol]タグは、番号付き（箇条書き）リストを作成する際に使います。[li]タグと組み合わせて使用します。"
+    },
+    {
+        "question": "ページ内にスクリプト（JavaScriptなど）を埋め込むために使うタグは？",
+        "choices": [
+            "script",
+            "js",
+            "code",
+            "run",
+            "a",
+            "link",
+            "function",
+            "style",
+            "src",
+            "head"
+        ],
+        "answer": "script",
+        "tags": [
+            "HTML",
+            "属性・連携"
+        ],
+        "explanation": "[script]タグは、JavaScriptなどのスクリプトコードを埋め込むために使います。"
+    },
+    {
+        "question": "HTMLにおいて、外部JavaScriptファイルを読み込む場合や直接JavaScriptを記述する場合に推奨されている箇所は？",
+        "choices": [
+            "</body>タグの直前",
+            "<body>タグの直前",
+            "</title>タグの直前",
+            "<title>タグの直下",
+            "<head>タグの直下",
+            "<meta>タグの直下",
+            "<html>タグの直下",
+            "</html>タグの直下",
+            "<a>タグの中",
+            "<link>タグの中"
+        ],
+        "answer": "</body>タグの直前",
+        "tags": [
+            "HTML",
+            "リンク・ナビ"
+        ],
+        "explanation": "JavaScriptはbodyタグの最後（＜/body＞タグの直前）に記述することが推奨されています。<br>これは、HTMLの読み込み時にJavaScriptの読み込みが始まるとそこでHTMLの読み込みが一旦止まってしまうのを避けるためです。"
+    },
+    {
+        "question": "HTML要素に特定のCSSクラスを適用するために使用する属性は？",
+        "choices": [
+            "class",
+            "style",
+            "id",
+            "type",
+            "role",
+            "target",
+            "css",
+            "selector",
+            "name",
+            "category"
+        ],
+        "answer": "class",
+        "tags": [
+            "HTML",
+            "属性・連携"
+        ],
+        "explanation": "[class]属性で、CSSのクラスをHTML要素に割り当てることができます。"
+    },
+    {
+        "question": "HTMLにおいて、__節や段落__を作成する際に使用するタグは？",
+        "choices": [
+            "p",
+            "h1",
+            "title",
+            "text",
+            "span",
+            "th",
+            "tr",
+            "h2",
+            "h3",
+            "li"
+        ],
+        "answer": "p",
+        "tags": [
+            "HTML",
+            "文書構造"
+        ],
+        "explanation": "[p]タグ（パラグラフタグ）は、節や段落を作成する際に使用します。"
+    },
+    {
+        "question": "HTMLにおいて、「head」タグの役割は次のうち、どれか？",
+        "choices": [
+            "節や段落などのWebページ内の文章やテキストを作成する",
+            "見出しを作成する",
+            "タイトルを作成する",
+            "ヘッダーを作成する",
+            "ページ全体の設定や情報など検索エンジンやブラウザに対して重要なメタデータを定義する",
+            "外部のスタイルシートを読み込む",
+            "実際にブラウザに表示させるための要素を定義する",
+            "ページ内の見出しやナビゲーションバーなど、ユーザーに直接見える部分のデザインや構造を指定する",
+            "ページの表示サイズやスケーリングを設定する",
+            "ページの下部に表示される情報、例えば、著作者情報、著作権表記、関連リンク、サイトマップ、利用規約などを記述するために使用する。"
+        ],
+        "answer": "ページ全体の設定や情報を定義する",
+        "tags": [
+            "HTML",
+            "文書構造"
+        ],
+        "explanation": "「head」タグは、ページのタイトル、文字コード、メタデータなど、ブラウザや検索エンジンが解釈する情報やページ全体の設定を定義します。"
+    },
+    {
+        "question": "下記の「input」タグの__type属性において、ラジオボタンを作成する__際に使用するtype属性は次のうち、どれか？",
+        "choices": [
+            "radio",
+            "submit",
+            "text",
+            "button",
+            "checkbox",
+            "url",
+            "ismap",
+            "image",
+            "hidden",
+            "input"
+        ],
+        "answer": "radio",
+        "tags": [
+            "HTML",
+            "フォーム"
+        ],
+        "explanation": "「input」タグでラジオボタンを作成する場合、type属性の値を「radio」に指定します。"
+    },
+    {
+        "question": "次のうち、HTMLの「インラインブロック要素」の特徴として該当するものはどれか？",
+        "choices": [
+            "常に新しい行から開始される",
+            "幅と高さを指定できない",
+            "テキストや他の要素と横並びになる",
+            "横幅が常に100%になる",
+            "CSSのfloatプロパティが無効になる",
+            "マージンとパディングを指定できない",
+            "親要素の幅に常に従う",
+            "block要素のように改行して配置される",
+            "display:flexが必要になる",
+            "インライン要素のように振る舞うが、ボックスモデルの影響を受けない"
+        ],
+        "answer": "テキストや他の要素と横並びになる",
+        "tags": [
+            "HTML",
+            "属性・連携"
+        ],
+        "explanation": "インラインブロック要素は、テキストのように横に並びますが、ブロック要素のように幅や高さを指定できます。つまり『テキストや他の要素と横並びになる』という特徴が正解です。他にも『幅と高さを指定できる』や『インライン要素のように振る舞いつつ、ボックスモデルの影響を受ける』も特徴ですが、設問では1つの選択を求めています。"
+    },
+    {
+        "question": "次のうち、「figure」タグの主な用途として正しいものはどれか？",
+        "choices": [
+            "文章を斜体にする",
+            "画像や図などの独立したコンテンツをグループ化する",
+            "ページ全体の背景を設定する",
+            "フォームの送信先を指定する",
+            "JavaScriptを埋め込む",
+            "リンクのターゲットを設定する",
+            "表の見出しを定義する",
+            "ナビゲーションを定義する",
+            "ページに動画を埋め込む",
+            "段落を中央に揃える"
+        ],
+        "answer": "画像や図などの独立したコンテンツをグループ化する",
+        "tags": [
+            "HTML",
+            "メディア"
+        ],
+        "explanation": "「figure」タグは、画像や図表などの視覚コンテンツと、それに関連するキャプションを<figcaption>タグと一緒にまとめるために使用されます。"
+    },
+    {
+        "question": "次のうち、HTMLの「section」タグに関する正しい説明はどれか？",
+        "choices": [
+            "Webページのナビゲーションリンクを定義する",
+            "フォームの送信先URLを指定する",
+            "ページ内の意味のある内容のまとまりを表す",
+            "外部スタイルシートを読み込む",
+            "JavaScriptを外部から読み込む",
+            "画像の代替テキストを定義する",
+            "表のセルを作成する",
+            "ヘッダーを定義する",
+            "段落を作成する",
+            "リンクを作成する"
+        ],
+        "answer": "ページ内の意味のある内容のまとまりを表す",
+        "tags": [
+            "HTML",
+            "文書構造"
+        ],
+        "explanation": "「section」タグは、記事やナビゲーションのように意味を持つコンテンツのまとまりを表現するために使われるセクショナル要素です。"
+    },
+    {
+        "question": "HTMLの主な用途として正しいものはどれか？",
+        "choices": [
+            "Webページの動作を制御する",
+            "ネット上から情報を読み込む",
+            "Webページを呼び出す",
+            "Webページを読み込む",
+            "Webページをデータベースに保存する",
+            "Webページをネット上にアップロードする",
+            "Webページを装飾する",
+            "Webページのコンテンツを生成する",
+            "Webページの構造を定義する",
+            "Webページのスタイルを定義する"
+        ],
+        "answer": "Webページの構造を定義する",
+        "tags": [
+            "HTML",
+            "文書構造"
+        ],
+        "explanation": "HTMLとは、Webページを作成するためのマークアップ言語で、Webサイトの構造を定義するために使用されます。具体的には、テキスト、画像、リンクなどの要素を配置し、ブラウザに表示させるための指示を記述します。"
+    },
+    {
+        "question": "次のid属性に関する説明の内、正しい説明はどれか？",
+        "choices": [
+            "1つのページに同じ名前のidを一つだけしか設定出来ない",
+            "idはclassよりも優先順位が低い",
+            "1つのページに同じ名前のidを複数、設定することができる",
+            "id属性とclass属性の優先順位は変わらない",
+            "CSSでのid属性のセレクタの指定方法は「.」で指定する。",
+            "id属性はSEOに直接影響を与える主要要素である",
+            "class属性と違い、id属性はCSSで指定できない",
+            "id属性はJavaScriptでは使用できない",
+            "id属性の前には「@」を使ってCSSで指定する",
+            "id属性はページ内のすべての要素に自動的に付与される"
+        ],
+        "answer": "1つのページに同じ名前のidを一つだけしか設定出来ない",
+        "tags": [
+            "HTML",
+            "属性・連携"
+        ],
+        "explanation": "id属性はHTML文書内で一意でなければならず、同じidを複数の要素に割り当てるのは不適切です。CSSでのidセレクタは「#」で指定します。"
+    },
+    {
+        "question": "次のうち、表の中のセル__（データ）__を定義するためのHTMLタグはどれか？",
+        "choices": [
+            "td",
+            "caption",
+            "section",
+            "li",
+            "ul",
+            "head",
+            "body",
+            "table",
+            "tr",
+            "th"
+        ],
+        "answer": "td",
+        "tags": [
+            "HTML",
+            "リスト・表"
+        ],
+        "explanation": "[td]タグは、「table data」の略で、HTMLの表（table）内でセル（データ）を定義するために使われます。"
+    },
+    {
+        "question": "__複数行の入力が可能な入力欄__を作成するためのタグはどれか？",
+        "choices": [
+            "textarea",
+            "text",
+            "p",
+            "h1",
+            "form",
+            "h2",
+            "a",
+            "span",
+            "table",
+            "section"
+        ],
+        "answer": "textarea",
+        "tags": [
+            "HTML",
+            "フォーム"
+        ],
+        "explanation": "[textarea]タグは、複数行の入力が可能な入力欄を作成するためのタグです。[textarea]タグ内に入力されたテキストは、入力フィールドの初期値として入力欄に表示されます。"
+    }
+]

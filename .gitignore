@@ -1,0 +1,15 @@
+node_modules/
+.npm-cache/
+dist/
+release/
+
+.DS_Store
+
+*.log
+npm-debug.log*
+
+.env
+.env.*
+!.env.example
+
+.vscode/

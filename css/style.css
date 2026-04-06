@@ -1,0 +1,970 @@
+html {
+    list-style: none;
+    text-decoration: none;
+}
+
+li {
+    list-style: none;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    height: 100vh;
+    margin: 0;
+    padding-top: 20px;
+    background-color: #ffa044;
+}
+
+
+#app {
+    background: white;
+    padding: 20px;
+    box-shadow: 5px 5px 0 0 rgba(51, 51, 51, 0.7);
+    border: 2px solid #000;
+    width: 90%;
+    max-width: 500px;
+    text-align: center;
+}
+
+#startScreen {
+    background: white;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    width: 90%;
+    margin: 10% auto;
+    max-width: 1100px;
+    text-align: center;
+}
+
+.easy {
+    color: red;
+    font-size: 2rem;
+    border-bottom: red double 5px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    font-size: 16px;
+    cursor: pointer;
+    /* 追加 */
+    border: 3px solid #333;
+    background: #fffaf0;
+}
+
+select,
+input,
+textarea {
+    width: 100%;
+    box-sizing: border-box;
+    border: 2px solid #333;
+    background: #fffef8;
+    padding: 10px 12px;
+    font-size: 15px;
+    margin: 6px 0 12px;
+}
+
+textarea {
+    resize: vertical;
+}
+
+.secondary-button {
+    background: #fff;
+}
+
+.editor-header-actions,
+.admin-login-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.editor-entry {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 2px dashed #d2c19a;
+}
+
+.admin-login-panel {
+    margin-top: 20px;
+    padding: 18px;
+    border: 2px solid #333;
+    background: #fff7e8;
+    box-shadow: 5px 5px 0 rgba(51, 51, 51, 0.2);
+    text-align: left;
+}
+
+.admin-login-panel h2 {
+    margin: 0 0 6px;
+}
+
+.admin-login-actions button,
+.editor-header-actions button {
+    width: auto;
+}
+
+.editor-entry-note {
+    margin: 8px 0 0;
+    font-size: 13px;
+    color: #5a5240;
+}
+
+.storage-help-panel {
+    margin-top: 20px;
+    padding: 18px;
+    border: 2px solid #333;
+    background: #fff7e6;
+    box-shadow: 5px 5px 0 rgba(51, 51, 51, 0.2);
+    text-align: left;
+}
+
+.storage-help-panel h2 {
+    margin: 0 0 10px;
+}
+
+.storage-help-copy {
+    margin: 0 0 10px;
+    color: #4f483d;
+    line-height: 1.6;
+}
+
+.storage-path-list {
+    margin: 14px 0;
+}
+
+.storage-path-list div+div {
+    margin-top: 10px;
+}
+
+.storage-path-list dt {
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.storage-path-list dd {
+    margin: 0;
+    padding: 10px 12px;
+    border: 1px solid #d8c8a0;
+    background: #fffdf7;
+    font-size: 13px;
+    line-height: 1.5;
+    word-break: break-all;
+}
+
+.storage-help-actions {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.storage-help-actions button {
+    width: auto;
+    min-width: 220px;
+}
+
+.question-editor {
+    margin-top: 20px;
+    padding: 18px;
+    border: 2px solid #333;
+    background: #fffdf6;
+    box-shadow: 5px 5px 0 rgba(51, 51, 51, 0.35);
+    text-align: left;
+}
+
+.question-editor-header,
+.question-editor-controls,
+.question-editor-actions,
+.question-form-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.question-editor-header h2,
+.question-form-header h3,
+.question-list-title {
+    margin: 0;
+}
+
+.question-editor-controls {
+    margin: 16px 0;
+    align-items: end;
+}
+
+.question-editor-controls label {
+    min-width: 90px;
+    font-weight: 700;
+}
+
+.question-editor-controls select {
+    margin: 0;
+    max-width: 220px;
+}
+
+.question-editor-controls button {
+    width: auto;
+    margin: 0 0 0 auto;
+}
+
+.question-editor-layout {
+    display: grid;
+    grid-template-columns: minmax(240px, 320px) minmax(0, 1fr);
+    gap: 18px;
+}
+
+.question-list-panel,
+.question-form-panel {
+    border: 1px solid #dfd4b6;
+    background: #fff;
+    border-radius: 10px;
+    padding: 14px;
+}
+
+.editor-question-list {
+    padding: 0;
+    margin: 12px 0 0;
+    max-height: 620px;
+    overflow-y: auto;
+}
+
+.editor-question-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    text-align: left;
+    border: 2px solid #ddd2b2;
+    background: #fff9e8;
+}
+
+.editor-question-item.active {
+    background: #333;
+    color: #fff;
+    border-color: #333;
+}
+
+.editor-question-order {
+    flex: 0 0 auto;
+    font-weight: 700;
+    min-width: 24px;
+}
+
+.editor-question-text {
+    display: block;
+    line-height: 1.45;
+}
+
+.editor-question-empty {
+    padding: 12px;
+    border: 1px dashed #d2c19a;
+    color: #6f6755;
+    border-radius: 8px;
+    background: #fffcf3;
+}
+
+.question-form-note,
+.editor-status {
+    margin: 4px 0 0;
+    color: #4f483d;
+    font-size: 14px;
+}
+
+.editor-status.is-error {
+    color: #b42318;
+}
+
+.question-form-panel label {
+    display: block;
+    font-weight: 700;
+}
+
+.question-editor-actions {
+    margin-top: 8px;
+    justify-content: flex-start;
+}
+
+.question-editor-actions button {
+    width: auto;
+    min-width: 120px;
+}
+
+@media (max-width: 860px) {
+    .question-editor-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .question-editor-header,
+    .question-editor-controls,
+    .question-form-header,
+    .question-editor-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .editor-header-actions,
+    .admin-login-actions {
+        flex-direction: column;
+    }
+
+    .storage-help-actions {
+        display: block;
+    }
+
+    .question-editor-controls button,
+    .question-editor-actions button,
+    .editor-header-actions button,
+    .admin-login-actions button,
+    .storage-help-actions button {
+        width: 100%;
+        margin: 0;
+    }
+}
+
+#progress {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* ポップアップ */
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 86%;
+    max-width: 760px;
+    height: 85vh;
+    max-height: 820px;
+    background-color: #fffdf7;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    padding: 16px;
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+    opacity: 0;
+    overflow: hidden;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.popup.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.popup-content {
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+#finalMessage {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 800;
+    line-height: 1.25;
+    letter-spacing: 0.02em;
+}
+
+#finalScore {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 700;
+    color: #2b2b2b;
+    background: #fff3d4;
+    border: 2px solid #333;
+    border-radius: 10px;
+    padding: 6px 10px;
+}
+
+.result-tab-nav {
+    display: flex;
+    gap: 8px;
+    margin: 2px 0 6px;
+}
+
+.result-tab-nav .tab-button {
+    width: auto;
+    flex: 1;
+    margin: 0;
+    background: #fff6e8;
+    border: 2px solid #333;
+    font-size: 14px;
+    padding: 8px 10px;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.result-tab-nav .tab-button.active {
+    background: #333;
+    color: #fff;
+}
+
+.result-tab-panels {
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+}
+
+.tab-panel {
+    display: none;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 8px;
+    line-height: 1.6;
+}
+
+.tab-panel.active {
+    display: block;
+}
+
+.t-answer {
+    color: blue;
+}
+
+.f-answer {
+    color: red;
+}
+
+.correct-item {
+    border: 1px solid #9dd8ff;
+    border-left: 6px solid #2687ff;
+    background-color: #eaf7ff;
+    padding: 10px;
+    margin-bottom: 12px;
+    border-radius: 8px;
+}
+
+.wrong-item {
+    border: 1px solid #ffb7b7;
+    border-left: 6px solid #ff5d5d;
+    background-color: #fff0f0;
+    padding: 10px;
+    margin-bottom: 12px;
+    border-radius: 8px;
+}
+
+.q-label {
+    color: red;
+}
+
+.a-label {
+    color: blue;
+}
+
+.e-label {
+    color: green;
+}
+
+/* 解説リストエリア */
+#explanationList {
+    overflow: visible;
+    border: 1px solid #ddd;
+    background-color: #ffffff;
+    padding: 12px;
+    border-radius: 10px;
+    margin: 6px 0;
+}
+
+#explanationList h3 {
+    margin: 0 0 6px;
+    font-size: 18px;
+}
+
+#explanationList p {
+    margin: 0 0 10px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* 解説リストの中身 */
+#explanationItems {
+    line-height: 1.6;
+}
+
+/* ボタン */
+.popup-content button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #ffc107;
+    color: #000;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.popup-content button:hover {
+    background-color: #0056b3;
+}
+
+.analytics-panel {
+    text-align: left;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background: #ffffff;
+    padding: 12px;
+    margin: 6px 0;
+}
+
+.analytics-panel h3,
+.wrong-note-panel h3 {
+    margin: 0 0 6px;
+    font-size: 16px;
+}
+
+.analytics-list {
+    margin: 0 0 10px;
+    padding-left: 0;
+}
+
+.analytics-list li {
+    margin: 6px 0;
+    font-size: 14px;
+    padding: 7px 10px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    background: #fafafa;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 8px;
+    margin: 6px 0 10px;
+}
+
+.dashboard-card {
+    border: 1px solid #e6e0cf;
+    border-radius: 10px;
+    background: #fff9ec;
+    padding: 10px;
+}
+
+.dashboard-card-label {
+    margin: 0 0 4px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #5b4b2e;
+}
+
+.dashboard-card-value {
+    margin: 0 0 4px;
+    font-size: 18px;
+    font-weight: 800;
+    color: #2f2a1f;
+}
+
+.dashboard-card-hint {
+    margin: 0;
+    font-size: 11px;
+    color: #6a6a6a;
+}
+
+.bar-chart {
+    margin: 6px 0 10px;
+    padding: 8px;
+    border: 1px solid #efe7d3;
+    border-radius: 10px;
+    background: #fffef9;
+}
+
+.bar-chart-title {
+    margin: 0 0 8px;
+    font-size: 13px;
+    font-weight: 800;
+    color: #3b3528;
+}
+
+.bar-row {
+    display: grid;
+    grid-template-columns: 2fr 2fr 1fr;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+.bar-label {
+    font-size: 12px;
+    color: #444;
+    font-weight: 600;
+}
+
+.bar-track {
+    height: 12px;
+    border-radius: 999px;
+    background: #ececec;
+    overflow: hidden;
+}
+
+.bar-fill {
+    height: 100%;
+    border-radius: 999px;
+}
+
+.bar-fill.current {
+    background: #ff9f43;
+}
+
+.bar-fill.history {
+    background: #4a90e2;
+}
+
+.bar-value {
+    text-align: right;
+    font-size: 12px;
+    font-weight: 700;
+    color: #2b2b2b;
+}
+
+.mastery-badge {
+    display: inline-block;
+    margin-right: 8px;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    border: 1px solid transparent;
+}
+
+.mastery-lv-5 {
+    background: #e5f7e7;
+    color: #145a1f;
+    border-color: #4caf50;
+}
+
+.mastery-lv-4 {
+    background: #e7f0ff;
+    color: #174b9b;
+    border-color: #4a90e2;
+}
+
+.mastery-lv-3 {
+    background: #fff8db;
+    color: #7a5a00;
+    border-color: #f0c74b;
+}
+
+.mastery-lv-2 {
+    background: #ffeede;
+    color: #8a4a00;
+    border-color: #ffad60;
+}
+
+.mastery-lv-1 {
+    background: #ffe4e4;
+    color: #8f1d1d;
+    border-color: #ff6b6b;
+}
+
+.analytics-actions {
+    margin: 8px 0 12px;
+}
+
+.weak-tag-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 12px;
+    align-items: center;
+    margin: 6px 0;
+}
+
+.weak-tag-controls label {
+    font-size: 13px;
+    font-weight: 700;
+}
+
+#weakTagSortSelect {
+    border: 1px solid #999;
+    border-radius: 6px;
+    padding: 6px 8px;
+    background: #fff;
+    font-size: 13px;
+}
+
+.weak-tag-controls .checkbox-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 600;
+}
+
+.weak-tag-controls .checkbox-label input {
+    width: auto;
+}
+
+.weak-tag-summary {
+    margin: 0 0 8px;
+    font-size: 12px;
+    color: #555;
+}
+
+.weak-tag-subtitle {
+    margin: 10px 0 4px;
+    font-size: 14px;
+    font-weight: 800;
+    color: #333;
+}
+
+.weak-tag-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin: 8px 0;
+}
+
+.weak-tag-tab {
+    width: auto;
+    margin: 0;
+    padding: 7px 10px;
+    border: 1px solid #999;
+    border-radius: 999px;
+    background: #f3f3f3;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.weak-tag-tab.active {
+    background: #333;
+    color: #fff;
+    border-color: #333;
+}
+
+.weak-tag-panel {
+    display: none;
+}
+
+.weak-tag-panel.active {
+    display: block;
+}
+
+.danger-button {
+    background: #ffdddd;
+    border: 2px solid #c62828;
+    color: #7f1212;
+    font-weight: 700;
+}
+
+.danger-button:hover {
+    background: #ffd0d0;
+}
+
+.wrong-note-panel {
+    text-align: left;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background: #ffffff;
+    padding: 12px;
+    margin: 6px 0;
+}
+
+#wrongNoteText {
+    width: 100%;
+    resize: vertical;
+    border: 1px solid #999;
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 14px;
+    line-height: 1.7;
+    background: #fffef9;
+}
+
+.note-actions,
+.result-actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.result-actions {
+    flex: 0 0 auto;
+    margin-top: 6px;
+    padding-top: 10px;
+    border-top: 2px solid #ddd;
+    background: #fffdf7;
+}
+
+.note-actions button,
+.result-actions button {
+    width: auto;
+    min-width: 210px;
+}
+
+.tab-panel::-webkit-scrollbar {
+    width: 10px;
+}
+
+.tab-panel::-webkit-scrollbar-thumb {
+    background: #d0d0d0;
+    border-radius: 999px;
+    border: 2px solid #fff;
+}
+
+
+/* スコア別に枠と背景の色が変わる */
+.popup.low-score {
+    border: 4px solid #ff6b6b;
+    background-color: #fff5f5;
+}
+
+.popup.mid-score {
+    border: 4px solid #fdb44b;
+    background-color: #fffaf0;
+}
+
+.popup.pass-score {
+    border: 4px solid #4caf50;
+    background-color: #f1fff1;
+}
+
+.popup.high-score {
+    border: 4px solid #007bff;
+    background-color: #f0f8ff;
+}
+
+.hidden {
+    display: none;
+}
+
+.underline {
+    text-decoration: underline;
+    text-decoration-color: red;
+    /* 例: 下線の色も変更可 */
+    text-decoration-thickness: 4px;
+    /* 下線の太さ調整 */
+    text-decoration-skip-ink: none;
+    /* 文字と重なっても下線が途切れないように */
+}
+
+.inline-token {
+    display: inline-block;
+    padding: 0 4px;
+    border: 1px solid #333;
+    background: #fff4c2;
+    font-size: 0.9em;
+}
+
+
+
+/* 問題に画像挿入した時の仮設定 */
+img {
+    width: 300px;
+    margin: 0 auto;
+}
+
+
+#quizContainer div.q-img {
+    background-image: url(../image/e0723_1.png);
+    background-repeat: no-repeat;
+    background-position: center;
+
+    background-size: contain;
+    width: 80%;
+    max-width: 600px;
+    aspect-ratio: 16 / 9;
+
+    margin: 0 auto;
+
+    position: relative;
+}
+
+#quizContainer div.q-img p#question {
+
+    position: absolute;
+    top: 20%;
+    left: 15%;
+    width: 70%;
+    font-size: 18px;
+    text-align: center;
+}
+
+#app {
+    margin: 0 auto;
+}
+
+div#choices {
+    width: 60%;
+    margin: 0 auto;
+}
+
+p#question,
+div#choices button {
+    font-family: "Rampart One", sans-serif;
+}
+
+div#choices button {
+
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    text-decoration: none;
+    color: #333333;
+    font-size: 18px;
+    border-radius: 0px;
+
+    font-weight: bold;
+    border: 2px solid #333333;
+    transition: 0.3s;
+    box-shadow: 5px 5px 0px 0px rgba(51, 51, 51, 0.7);
+    background-color: #ffffff;
+}
+
+div#choices button:hover {
+    box-shadow: 0 0 #333;
+    color: #fff;
+    background-color: #333;
+}
+
+
+
+@media screen and (max-width :850px) {
+    .popup {
+        width: 92%;
+        height: 88vh;
+        padding: 12px;
+    }
+
+    #finalMessage {
+        font-size: 20px;
+    }
+
+    #finalScore {
+        font-size: 14px;
+    }
+
+    #quizContainer div.q-img p#question {
+        position: absolute;
+        transform: translateY(5%);
+        left: 15%;
+        width: 70%;
+        font-size: 16px;
+    }
+
+    div#choices button {
+        font-size: 16px;
+    }
+
+    .note-actions button,
+    .result-actions button {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .result-tab-nav {
+        flex-direction: column;
+    }
+
+    .result-tab-nav .tab-button {
+        width: 100%;
+    }
+}

@@ -1,0 +1,632 @@
+[
+    {
+        "question": "JavaScriptで__再代入できない変数__を宣言するキーワードは？",
+        "choices": [
+            "var",
+            "let",
+            "const",
+            "int",
+            "string",
+            "function",
+            "define",
+            "new",
+            "class",
+            "void"
+        ],
+        "answer": "const",
+        "tags": [
+            "JS",
+            "変数"
+        ],
+        "explanation": "再代入できない変数を宣言するときはconstを使います。<br>constキーワードでは、再代入できない変数の宣言とその変数が参照する値（初期値）を定義できます。"
+    },
+    {
+        "question": "JavaScriptで関数を定義するためのキーワードは？",
+        "choices": [
+            "function",
+            "def",
+            "func",
+            "method",
+            "declare",
+            "fn",
+            "define",
+            "procedure",
+            "create",
+            "call"
+        ],
+        "answer": "function",
+        "tags": [
+            "JS",
+            "関数"
+        ],
+        "explanation": "[function]キーワードを使って関数を定義します。"
+    },
+    {
+        "question": "JavaScriptで__配列の長さ__を取得するプロパティは？",
+        "choices": [
+            "length",
+            "size",
+            "count",
+            "items",
+            "total",
+            "length()",
+            "arraySize",
+            "numberOfElements",
+            "maxIndex",
+            "elements"
+        ],
+        "answer": "length",
+        "tags": [
+            "JS",
+            "配列"
+        ],
+        "explanation": "[length]プロパティで配列の要素数を取得します。"
+    },
+    {
+        "question": "次のうち__JavaScriptのデータ型__に含まれないものは？",
+        "choices": [
+            "string",
+            "number",
+            "boolean",
+            "array",
+            "object",
+            "undefined",
+            "symbol",
+            "function",
+            "bigint",
+            "null"
+        ],
+        "answer": "array",
+        "tags": [
+            "JS",
+            "配列"
+        ],
+        "explanation": "JavaScriptには[object]型があり、[array]はobjectの一種です。[array]はデータ型として独立していません。"
+    },
+    {
+        "question": "JavaScriptで__条件指定をして[true] or [false]で__条件分岐を作るために使う構文は？",
+        "choices": [
+            "if",
+            "when",
+            "case",
+            "switch",
+            "else",
+            "do",
+            "match",
+            "cond",
+            "check",
+            "decide"
+        ],
+        "answer": "if",
+        "tags": [
+            "JS",
+            "制御構文"
+        ],
+        "explanation": "条件指定をして[true] or [false]で条件分岐する場合は[if]文を使って条件分岐を作ります。<br>変数の値によって条件分岐する場合には[switch]文を使って条件分岐を作ります。"
+    },
+    {
+        "question": "JavaScriptで__現在日時__を取得する方法は？",
+        "choices": [
+            "Date.now()",
+            "new Date()",
+            "getDate()",
+            "Date()",
+            "today()",
+            "getTime()",
+            "Date.current()",
+            "currentDate()",
+            "fetchDate()",
+            "now()"
+        ],
+        "answer": "new Date()",
+        "tags": [
+            "JS",
+            "組み込みオブジェクト"
+        ],
+        "explanation": "[new Date()]で現在日時を取得できます。"
+    },
+    {
+        "question": "条件が[false（偽）]と評価されるまで__指定した回数だけ__処理を繰り返すループ処理を作るための構文は？",
+        "choices": [
+            "for",
+            "foreach",
+            "do",
+            "while",
+            "loop",
+            "repeat",
+            "cycle",
+            "do...while",
+            "iterate",
+            "each"
+        ],
+        "answer": "for",
+        "tags": [
+            "JS",
+            "制御構文"
+        ],
+        "explanation": "[for]文は__指定した回数だけ__処理を繰り返す目的で利用されます。"
+    },
+    {
+        "question": "JavaScriptで__関数そのもの__を変数に代入できる機能は？",
+        "choices": [
+            "関数式",
+            "関数宣言",
+            "無名関数",
+            "アロー関数",
+            "即時関数",
+            "コールバック",
+            "クロージャ",
+            "関数オブジェクト",
+            "関数型",
+            "ラムダ式"
+        ],
+        "answer": "関数式",
+        "tags": [
+            "JS",
+            "変数"
+        ],
+        "explanation": "関数式を使うことで、関数を変数に代入できます。"
+    },
+    {
+        "question": "次のうち、真偽値を表すもので__「真」を表す__ものは？",
+        "choices": [
+            "true",
+            "false",
+            "1",
+            "0",
+            "yes",
+            "no",
+            "on",
+            "off",
+            "open",
+            "close"
+        ],
+        "answer": "true",
+        "tags": [
+            "JS",
+            "演算・真偽値"
+        ],
+        "explanation": "JavaScriptでは、[true]と[false]が真偽値を表します。"
+    },
+    {
+        "question": "JavaScriptで__エラーをキャッチ__する構文は？",
+        "choices": [
+            "try-catch",
+            "catch-error",
+            "handle-error",
+            "error-catch",
+            "catch",
+            "throw-catch",
+            "catching",
+            "catch-block",
+            "error-handler",
+            "trap"
+        ],
+        "answer": "try-catch",
+        "tags": [
+            "JS",
+            "例外処理"
+        ],
+        "explanation": "[try-catch]構文でエラーをキャッチして処理できます。"
+    },
+    {
+        "question": "JavaScriptで__再代入できる変数__を定義するキーワードで現在、__推奨されている__ものはどれ？",
+        "choices": [
+            "var",
+            "let",
+            "const",
+            "define",
+            "function",
+            "set",
+            "make",
+            "new",
+            "create",
+            "init"
+        ],
+        "answer": "let",
+        "tags": [
+            "JS",
+            "変数"
+        ],
+        "explanation": "再代入できる変数を定義するキーワードで現在、推奨されているものは[let]です。[var]は古い書き方で、巻き上げなどの問題があるため注意が必要です。"
+    },
+    {
+        "question": "条件が[false（偽）]と評価されるまで__条件が満たされている限り何度も処理を繰り返す__ループ処理を作るための構文で、__処理の実行後__に真偽判定するものは？",
+        "choices": [
+            "for",
+            "foreach",
+            "do",
+            "while",
+            "loop",
+            "repeat",
+            "cycle",
+            "do...while",
+            "iterate",
+            "each"
+        ],
+        "answer": "do...while",
+        "tags": [
+            "JS",
+            "制御構文"
+        ],
+        "explanation": "[do...while]文は条件が[false（偽）]と評価されるまで繰り返し処理を実行するループ文であり、各ループの実行後に条件の真偽を判定します。<br>必ず1度は実行させたい処理がある場合は、[do...while]文を使用します。"
+    },
+    {
+        "question": "JavaScriptで__配列__を作成するための構文は？",
+        "choices": [
+            "[]",
+            "{}",
+            "()",
+            "<>",
+            "array()",
+            "new Array()",
+            "createArray()",
+            "[[]]",
+            "setArray()",
+            "list()"
+        ],
+        "answer": "[]",
+        "tags": [
+            "JS",
+            "配列"
+        ],
+        "explanation": "配列は[]を使って作成します。例：[1, 2, 3]。new Array()も使えますが、最近は[]が一般的です。"
+    },
+    {
+        "question": "条件が[false（偽）]と評価されるまで__条件が満たされている限り何度も処理を繰り返す__ループ処理を作るための構文で、__処理の実行前__に真偽判定するものは？",
+        "choices": [
+            "for",
+            "foreach",
+            "do",
+            "while",
+            "loop",
+            "repeat",
+            "cycle",
+            "do...while",
+            "iterate",
+            "each"
+        ],
+        "answer": "while",
+        "tags": [
+            "JS",
+            "制御構文"
+        ],
+        "explanation": "[while]文は条件が[false（偽）]と評価されるまで繰り返し処理を実行するループ文であり、各ループの実行前に条件の真偽を判定します。<br>[while]はループ処理の実行前に真偽判定する性質上、条件によっては一度も処理が実行されない場合があるので注意が必要です。"
+    },
+    {
+        "question": "JavaScriptで__オブジェクト__を作成する方法は？",
+        "choices": [
+            "{}",
+            "new Object()",
+            "object()",
+            "createObject()",
+            "makeObject()",
+            "new {}",
+            "setObject()",
+            "()",
+            "[]",
+            "class"
+        ],
+        "answer": "{}",
+        "tags": [
+            "JS",
+            "オブジェクト"
+        ],
+        "explanation": "オブジェクトを作成するには{}を使います。また、new Object() も使用可能です。"
+    },
+    {
+        "question": "JavaScriptで__コメント__を書く方法は？",
+        "choices": [
+            "//",
+            "/* */",
+            "#",
+            "--",
+            "%%",
+            "<!-- -->",
+            "??",
+            "!!",
+            "**",
+            "??"
+        ],
+        "answer": "//",
+        "tags": [
+            "JS",
+            "基礎"
+        ],
+        "explanation": "一行コメントは //、複数行コメントは /* */ で記述します。"
+    },
+    {
+        "question": "JavaScriptで__文字列の長さ__を取得するプロパティは？",
+        "choices": [
+            "length",
+            "size",
+            "count",
+            "textLength",
+            "total",
+            "chars",
+            "stringSize",
+            "getLength()",
+            "numChars",
+            "characters"
+        ],
+        "answer": "length",
+        "tags": [
+            "JS",
+            "配列"
+        ],
+        "explanation": "文字列の長さを取得するには length プロパティを使用します。"
+    },
+    {
+        "question": "JavaScriptで__数値を文字列に変換__する方法は？",
+        "choices": [
+            "toString()",
+            "String()",
+            "convert()",
+            "toStr()",
+            "numToString()",
+            "stringify()",
+            "parseString()",
+            "text()",
+            "char()",
+            "numToText()"
+        ],
+        "answer": "toString()",
+        "tags": [
+            "JS",
+            "型変換"
+        ],
+        "explanation": "toString() メソッドを使うと、数値を文字列に変換できます。"
+    },
+    {
+        "question": "JavaScriptの__論理演算子__でANDを表すのは？",
+        "choices": [
+            "&&",
+            "||",
+            "!",
+            "&",
+            "|",
+            "and",
+            "&&=",
+            "^^",
+            "??",
+            "!!"
+        ],
+        "answer": "&&",
+        "tags": [
+            "JS",
+            "演算・真偽値"
+        ],
+        "explanation": "論理ANDは && で表します。例:true && false は false になります。"
+    },
+    {
+        "question": "JavaScriptで__非同期処理__を行うための構文は？",
+        "choices": [
+            "async/await",
+            "setTimeout()",
+            "setInterval()",
+            "callback",
+            "promise",
+            "thread",
+            "sync",
+            "background",
+            "yield",
+            "defer"
+        ],
+        "answer": "async/await",
+        "tags": [
+            "JS",
+            "非同期処理"
+        ],
+        "explanation": "非同期処理には async/await や Promise、コールバック関数を使います。"
+    },
+    {
+        "question": "JavaScriptで__オブジェクトのプロパティ__にアクセスする方法は？",
+        "choices": [
+            "obj.property",
+            "obj['property']",
+            "obj->property",
+            "obj::property",
+            "obj(property)",
+            "obj#property",
+            "obj::getProperty()",
+            "obj@property",
+            "obj.property()",
+            "obj|property"
+        ],
+        "answer": "obj.property",
+        "tags": [
+            "JS",
+            "オブジェクト"
+        ],
+        "explanation": "オブジェクトのプロパティには obj.property または obj['property'] でアクセスできます。"
+    },
+    {
+        "question": "JavaScriptで__配列を結合__するメソッドは？",
+        "choices": [
+            "concat()",
+            "merge()",
+            "combine()",
+            "join()",
+            "add()",
+            "append()",
+            "link()",
+            "bind()",
+            "unite()",
+            "glue()"
+        ],
+        "answer": "concat()",
+        "tags": [
+            "JS",
+            "配列"
+        ],
+        "explanation": "配列を結合するには concat() メソッドを使用します。"
+    },
+    {
+        "question": "JavaScriptで__オブジェクトのキーを取得__するメソッドは？",
+        "choices": [
+            "Object.keys()",
+            "Object.values()",
+            "Object.entries()",
+            "getKeys()",
+            "keys()",
+            "obj.getKeys()",
+            "extractKeys()",
+            "propertyKeys()",
+            "keyList()",
+            "getPropertyNames()"
+        ],
+        "answer": "Object.keys()",
+        "tags": [
+            "JS",
+            "配列"
+        ],
+        "explanation": "Object.keys() を使うと、オブジェクトのキーを配列として取得できます。"
+    },
+    {
+        "question": "JavaScriptで__文字列を配列に変換__するメソッドは？",
+        "choices": [
+            "split()",
+            "slice()",
+            "toArray()",
+            "explode()",
+            "parse()",
+            "convertToArray()",
+            "strToArray()",
+            "textToList()",
+            "spread()",
+            "arrayify()"
+        ],
+        "answer": "split()",
+        "tags": [
+            "JS",
+            "配列"
+        ],
+        "explanation": "split() メソッドを使うと、指定した区切り文字で文字列を配列に変換できます。"
+    },
+    {
+        "question": "JavaScriptで__配列の要素を削除__するメソッドは？",
+        "choices": [
+            "splice()",
+            "remove()",
+            "delete()",
+            "pop()",
+            "shift()",
+            "cut()",
+            "drop()",
+            "exclude()",
+            "clear()",
+            "filter()"
+        ],
+        "answer": "splice()",
+        "tags": [
+            "JS",
+            "配列"
+        ],
+        "explanation": "splice() メソッドを使うと、指定した要素を削除できます。"
+    },
+    {
+        "question": "JavaScriptで__小数点以下を切り捨てる__メソッドは？",
+        "choices": [
+            "Math.floor()",
+            "Math.ceil()",
+            "Math.round()",
+            "Math.trunc()",
+            "parseInt()",
+            "toFixed()",
+            "fix()",
+            "chop()",
+            "clip()",
+            "truncate()"
+        ],
+        "answer": "Math.floor()",
+        "tags": [
+            "JS",
+            "組み込みオブジェクト"
+        ],
+        "explanation": "Math.floor() を使うと、小数点以下を切り捨てて整数を取得できます。"
+    },
+    {
+        "question": "JavaScriptで__現在のURLを取得__するプロパティは？",
+        "choices": [
+            "window.location.href",
+            "document.URL",
+            "location.current",
+            "getURL()",
+            "browser.url",
+            "currentLocation()",
+            "navigator.href",
+            "page.address",
+            "document.href",
+            "window.URL"
+        ],
+        "answer": "window.location.href",
+        "tags": [
+            "JS",
+            "オブジェクト"
+        ],
+        "explanation": "window.location.href を使うと、現在のページのURLを取得できます。"
+    },
+    {
+        "question": "JavaScriptで__ページをリロード__する方法は？",
+        "choices": [
+            "location.reload()",
+            "window.refresh()",
+            "document.reload()",
+            "reloadPage()",
+            "refresh()",
+            "reset()",
+            "refreshPage()",
+            "restart()",
+            "window.reload()",
+            "reload()"
+        ],
+        "answer": "location.reload()",
+        "tags": [
+            "JS",
+            "ブラウザAPI"
+        ],
+        "explanation": "location.reload() を使うと、ページをリロードできます。"
+    },
+    {
+        "question": "JavaScriptで__非同期処理をキャンセル__する方法は？",
+        "choices": [
+            "clearTimeout()",
+            "clearInterval()",
+            "abort()",
+            "cancel()",
+            "stop()",
+            "halt()",
+            "reset()",
+            "removeTimeout()",
+            "clear()",
+            "break()"
+        ],
+        "answer": "clearTimeout()",
+        "tags": [
+            "JS",
+            "非同期処理"
+        ],
+        "explanation": "setTimeout() で設定したタイマーは clearTimeout() でキャンセルできます。"
+    },
+    {
+        "question": "JavaScriptで__JSONをオブジェクトに変換__するメソッドは？",
+        "choices": [
+            "JSON.parse()",
+            "JSON.stringify()",
+            "toJSON()",
+            "parseJSON()",
+            "convertJSON()",
+            "decodeJSON()",
+            "deserialize()",
+            "JSON.decode()",
+            "JSON.toObject()",
+            "unstringify()"
+        ],
+        "answer": "JSON.parse()",
+        "tags": [
+            "JS",
+            "オブジェクト"
+        ],
+        "explanation": "JSON.parse() を使うと、JSON文字列をオブジェクトに変換できます。"
+    }
+]

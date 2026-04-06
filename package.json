@@ -1,0 +1,52 @@
+{
+  "name": "quiz-app",
+  "version": "1.0.1",
+  "productName": "Quiz App",
+  "main": "electron/main.js",
+  "scripts": {
+    "build": "tsc",
+    "clean:release:mac": "node scripts/clean-release.mjs",
+    "electron": "npm run build && electron .",
+    "package:mac": "npm run build && npm run clean:release:mac && electron-builder --mac zip dmg",
+    "package:dir": "npm run build && electron-builder --dir",
+    "watch": "tsc --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "keywords": [],
+  "description": "",
+  "dependencies": {
+    "typescript": "^5.7.3"
+  },
+  "devDependencies": {
+    "electron": "^36.0.0",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "com.tsujinofukiju.quizapp",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "electron/**/*",
+      "dist/**/*",
+      "css/**/*",
+      "image/**/*",
+      "index.html",
+      "categories.json",
+      "html-questions.json",
+      "css-questions.json",
+      "js-questions.json",
+      "package.json"
+    ],
+    "mac": {
+      "target": [
+        "zip",
+        "dmg"
+      ],
+      "category": "public.app-category.education",
+      "icon": "image/quiz_icon_512x512.png"
+    }
+  }
+}

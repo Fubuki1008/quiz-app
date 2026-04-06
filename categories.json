@@ -1,0 +1,17 @@
+[
+  {
+    "id": "html",
+    "label": "HTML",
+    "fileName": "html-questions.json"
+  },
+  {
+    "id": "css",
+    "label": "CSS",
+    "fileName": "css-questions.json"
+  },
+  {
+    "id": "javascript",
+    "label": "JavaScript",
+    "fileName": "js-questions.json"
+  }
+]

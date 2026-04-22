@@ -1,3 +1,4 @@
+// 問題データと Electron API の読み書きをまとめて扱う
 import {
   CategoryDefinition,
   Question,
@@ -22,6 +23,21 @@ export function loadQuestions(fileName: string): Promise<Question[]> {
   return fetch(`./${fileName}`).then((response) => {
     if (!response.ok) {
       throw new Error(`Failed to load questions: ${response.status}`);
+    }
+    return response.json() as Promise<Question[]>;
+  });
+}
+
+export function loadBundledQuestions(fileName: string): Promise<Question[]> {
+  const appWindow = getAppWindow();
+
+  if (appWindow.quizAppApi) {
+    return appWindow.quizAppApi.loadBundledQuestions(fileName);
+  }
+
+  return fetch(`./${fileName}`).then((response) => {
+    if (!response.ok) {
+      throw new Error(`Failed to load bundled questions: ${response.status}`);
     }
     return response.json() as Promise<Question[]>;
   });

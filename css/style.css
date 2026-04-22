@@ -37,6 +37,142 @@ body {
     text-align: center;
 }
 
+.mode-selector {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin: 18px 0 16px;
+}
+
+.mode-button {
+    margin: 0;
+}
+
+.mode-button.active {
+    background: #333;
+    color: #fff;
+}
+
+.start-mode-panel {
+    margin-top: 12px;
+}
+
+.start-panel-copy {
+    margin: 0 0 14px;
+    color: #5a5240;
+}
+
+.start-category-buttons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px;
+}
+
+.start-category-buttons button {
+    margin: 0;
+}
+
+#quizContainer {
+    width: 92%;
+    max-width: 1180px;
+    margin: 24px auto;
+    background: #fffdf7;
+    border: 2px solid #333;
+    box-shadow: 6px 6px 0 rgba(51, 51, 51, 0.5);
+    padding: 24px;
+}
+
+#knowledgeWorkspace {
+    margin-bottom: 20px;
+}
+
+.practical-workspace {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(320px, 44%);
+    gap: 18px;
+    align-items: start;
+    margin-bottom: 20px;
+}
+
+.practical-panel {
+    min-height: 100%;
+    background: #fff;
+    border: 2px solid #333;
+    box-shadow: 5px 5px 0 rgba(51, 51, 51, 0.18);
+    padding: 16px;
+    text-align: left;
+}
+
+.practical-panel-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.practical-panel-header h2 {
+    margin: 0;
+    font-size: 20px;
+}
+
+.practical-input-label,
+.practical-preview-status {
+    margin: 0;
+    color: #5a5240;
+    font-size: 13px;
+}
+
+.practical-question-text {
+    margin-bottom: 14px;
+    padding: 14px;
+    border: 1px solid #ddd2b2;
+    background: #fff9e8;
+    border-radius: 10px;
+    line-height: 1.7;
+}
+
+.practical-code {
+    margin: 0 0 12px;
+    padding: 16px;
+    border: 1px solid #ddd;
+    background: #202227;
+    color: #f5f5f5;
+    border-radius: 12px;
+    overflow-x: auto;
+    line-height: 1.6;
+    font-size: 14px;
+}
+
+.practical-code-token {
+    color: #ffd166;
+    font-weight: 700;
+}
+
+.practical-answer-input {
+    min-height: 220px;
+    font-family: "SFMono-Regular", Consolas, monospace;
+    line-height: 1.6;
+}
+
+.practical-actions {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.practical-actions button {
+    width: auto;
+    min-width: 180px;
+}
+
+.practical-preview-frame {
+    width: 100%;
+    min-height: 420px;
+    border: 1px solid #d8d1c0;
+    border-radius: 12px;
+    background: #fff;
+}
+
 .easy {
     color: red;
     font-size: 2rem;
@@ -293,6 +429,12 @@ textarea {
         grid-template-columns: 1fr;
     }
 
+    .mode-selector,
+    .start-category-buttons,
+    .practical-workspace {
+        grid-template-columns: 1fr;
+    }
+
     .question-editor-header,
     .question-editor-controls,
     .question-form-header,
@@ -372,7 +514,7 @@ textarea {
 }
 
 #finalScore {
-    margin: 0;
+    /* margin: 0; */
     font-size: 16px;
     font-weight: 700;
     color: #2b2b2b;
@@ -380,6 +522,10 @@ textarea {
     border: 2px solid #333;
     border-radius: 10px;
     padding: 6px 10px;
+
+    /* 追記4/17 */
+    width: fit-content;
+    margin: 0 auto;
 }
 
 .result-tab-nav {
@@ -845,11 +991,12 @@ textarea {
 }
 
 .inline-token {
-    display: inline-block;
+    /* display: inline-block; */
     padding: 0 4px;
-    border: 1px solid #333;
-    background: #fff4c2;
-    font-size: 0.9em;
+    /* border: 1px solid #333; */
+    /* background: #fff4c2; */
+    background: #ffc2c2;
+    font-size: 1.2em;
 }
 
 
@@ -861,29 +1008,39 @@ img {
 }
 
 
-#quizContainer div.q-img {
-    background-image: url(../image/e0723_1.png);
-    background-repeat: no-repeat;
-    background-position: center;
+#quizContainer div.q-area {
+    /* background-image: url(../image/e0723_1.png); */
+    /* background-repeat: no-repeat; */
+    /* background-position: center; */
 
-    background-size: contain;
-    width: 80%;
-    max-width: 600px;
+    /* background-size: contain; */
+    /* width: 80%; */
+    /* max-width: 600px; */
     aspect-ratio: 16 / 9;
-
     margin: 0 auto;
+    /* position: relative; */
 
-    position: relative;
+    width: 70%;
+    background-color: #ffffff;
+    box-shadow: 5px 5px 0px 0px rgba(51, 51, 51, 0.7);
+    border: 2px solid #333;
+    margin-bottom: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-#quizContainer div.q-img p#question {
+#quizContainer div.q-area p#question {
 
-    position: absolute;
-    top: 20%;
-    left: 15%;
-    width: 70%;
+    /* position: absolute; */
+    /* top: 20%; */
+    /* left: 15%; */
+    width: 90%;
     font-size: 18px;
-    text-align: center;
+
+    /* フォント_配置_4/15 */
+    max-inline-size: max-content;
+    margin-inline: auto;
 }
 
 #app {
@@ -893,11 +1050,6 @@ img {
 div#choices {
     width: 60%;
     margin: 0 auto;
-}
-
-p#question,
-div#choices button {
-    font-family: "Rampart One", sans-serif;
 }
 
 div#choices button {
@@ -926,11 +1078,19 @@ div#choices button:hover {
 }
 
 
+/* 実技問題レイアウト */
+
+
 
 @media screen and (max-width :850px) {
+    #quizContainer {
+        width: 94%;
+        padding: 16px;
+    }
+
     .popup {
         width: 92%;
-        height: 88vh;
+        height: 96vh;
         padding: 12px;
     }
 
@@ -942,16 +1102,25 @@ div#choices button:hover {
         font-size: 14px;
     }
 
-    #quizContainer div.q-img p#question {
-        position: absolute;
-        transform: translateY(5%);
-        left: 15%;
-        width: 70%;
+    #quizContainer div.q-area p#question {
+        /* position: absolute; */
+        /* transform: translateY(5%); */
+        /* left: 15%; */
+        width: 90%;
         font-size: 16px;
     }
 
     div#choices button {
         font-size: 16px;
+    }
+
+    .practical-panel-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .practical-preview-frame {
+        min-height: 320px;
     }
 
     .note-actions button,
@@ -961,7 +1130,7 @@ div#choices button:hover {
     }
 
     .result-tab-nav {
-        flex-direction: column;
+        /* flex-direction: column; */
     }
 
     .result-tab-nav .tab-button {

@@ -1,4 +1,26 @@
+// アプリ全体で共有する型定義をまとめる
 export type QuestionFileName = string;
+
+export type QuizMode = "knowledge" | "practical";
+export type QuestionType = "knowledge" | "practical";
+export type PracticalLanguage = "html" | "css";
+
+export type PracticalCssRequirement = {
+  selector?: string;
+  property: string;
+  value: string | string[];
+};
+
+export type PracticalHtmlAttributeRequirement = {
+  name: string;
+  value?: string | string[];
+};
+
+export type PracticalHtmlRequirement = {
+  tag: string;
+  text?: string | string[];
+  attributes?: PracticalHtmlAttributeRequirement[];
+};
 
 export type CategoryDefinition = {
   id: string;
@@ -7,11 +29,22 @@ export type CategoryDefinition = {
 };
 
 export type Question = {
+  questionType?: QuestionType;
   question: string;
   choices: string[];
   answer: string;
   explanation: string;
   tags?: string[];
+  acceptedAnswers?: string[];
+  practicalLanguage?: PracticalLanguage;
+  inputLabel?: string;
+  inputPlaceholder?: string;
+  codeTemplate?: string;
+  previewTemplate?: string;
+  practicalBaseHtml?: string;
+  practicalSelector?: string;
+  cssRequirements?: PracticalCssRequirement[];
+  htmlRequirements?: PracticalHtmlRequirement[];
 };
 
 export type AnswerRecord = {
@@ -65,6 +98,7 @@ export type WeakTagTabKey = "history" | "current";
 export type QuizAppApi = {
   loadCategories: () => Promise<CategoryDefinition[]>;
   loadQuestions: (fileName: string) => Promise<Question[]>;
+  loadBundledQuestions: (fileName: string) => Promise<Question[]>;
   saveQuestions: (fileName: string, questions: Question[]) => Promise<{ ok: true }>;
   createCategory: (label: string) => Promise<CategoryDefinition>;
   renameCategory: (fileName: string, label: string) => Promise<CategoryDefinition>;

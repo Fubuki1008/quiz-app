@@ -1,0 +1,229 @@
+[
+  {
+    "questionType": "practical",
+    "practicalLanguage": "html",
+    "question": "テキスト[こんにちは]を表示する__最上位の見出し要素__を記述してください。",
+    "choices": [],
+    "answer": "<h1>こんにちは</h1>",
+    "explanation": "%[h1]%は最上位の見出しです。開始タグと終了タグでテキストを囲みます。",
+    "tags": ["HTML", "見出し"],
+    "htmlRequirements": [
+      {
+        "tag": "h1",
+        "text": "こんにちは"
+      }
+    ]
+  },
+  {
+    "questionType": "practical",
+    "practicalLanguage": "html",
+    "question": "テキスト[これは段落です]を表示する__段落要素__を記述してください。",
+    "choices": [],
+    "answer": "<p>これは段落です</p>",
+    "explanation": "文章のひとかたまりには%[p]%要素を使います。",
+    "tags": ["HTML", "段落"],
+    "htmlRequirements": [
+      {
+        "tag": "p",
+        "text": "これは段落です"
+      }
+    ]
+  },
+  {
+    "questionType": "practical",
+    "practicalLanguage": "html",
+    "question": "リンク文字列[公式サイト]で%[https://example.com]%に移動する__リンク要素__を記述してください。",
+    "choices": [],
+    "answer": "<a href=\"https://example.com\">公式サイト</a>",
+    "explanation": "%[a]%要素には%href%属性で移動先URLを指定します。",
+    "tags": ["HTML", "リンク"],
+    "htmlRequirements": [
+      {
+        "tag": "a",
+        "text": "公式サイト",
+        "attributes": [
+          {
+            "name": "href",
+            "value": "https://example.com"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "questionType": "practical",
+    "practicalLanguage": "html",
+    "question": "__%[class]%属性に%[card]%を持つ%[div]%要素__で、文字列 [カードです] を表示してください。",
+    "choices": [],
+    "answer": "<div class=\"card\">カードです</div>",
+    "explanation": "%[class]%属性を使うとCSSからまとめて装飾しやすくなります。",
+    "tags": ["HTML", "属性"],
+    "htmlRequirements": [
+      {
+        "tag": "div",
+        "text": "カードです",
+        "attributes": [
+          {
+            "name": "class",
+            "value": "card"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "questionType": "practical",
+    "practicalLanguage": "html",
+    "question": "__番号なしリスト__として[りんご]と[みかん]の2項目を表示してください。",
+    "choices": [],
+    "answer": "<ul><li>りんご</li><li>みかん</li></ul>",
+    "explanation": "番号なしリストは %[ul]%、各項目は %[li]% で表します。",
+    "tags": ["HTML", "リスト"],
+    "htmlRequirements": [
+      {
+        "tag": "ul"
+      },
+      {
+        "tag": "li",
+        "text": "りんご"
+      },
+      {
+        "tag": "li",
+        "text": "みかん"
+      }
+    ]
+  },
+  {
+    "questionType": "practical",
+    "practicalLanguage": "html",
+    "question": "__入力欄を作る%[input]%要素__で、__%[placeholder]%に[名前を入力]と指定__してください。",
+    "choices": [],
+    "answer": "<input placeholder=\"名前を入力\">",
+    "explanation": "補助文言は %[placeholder]% 属性で指定できます。",
+    "tags": ["HTML", "フォーム"],
+    "htmlRequirements": [
+      {
+        "tag": "input",
+        "attributes": [
+          {
+            "name": "placeholder",
+            "value": "名前を入力"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "questionType": "practical",
+    "practicalLanguage": "html",
+    "question": "__送信ボタンとして%[button]%要素__に文字列 [送信] を入れてください。",
+    "choices": [],
+    "answer": "<button>送信</button>",
+    "explanation": "クリック可能なボタンは %[button]% 要素で作成します。",
+    "tags": ["HTML", "フォーム"],
+    "htmlRequirements": [
+      {
+        "tag": "button",
+        "text": "送信"
+      }
+    ]
+  },
+  {
+    "questionType": "practical",
+    "practicalLanguage": "html",
+    "question": "画像の代わりに説明文を表示してください。%[img]%要素に[ロゴ画像]という__代替テキストを指定__してください。<br>__*srcは%[logo.png]%にしてください。__",
+    "choices": [],
+    "answer": "<img src=\"logo.png\" alt=\"ロゴ画像\">",
+    "explanation": "%[alt]% 属性は画像が表示できない時の代替テキストになります。",
+    "tags": ["HTML", "画像"],
+    "htmlRequirements": [
+      {
+        "tag": "img",
+        "attributes": [
+          {
+            "name": "src",
+            "value": "logo.png"
+          },
+          {
+            "name": "alt",
+            "value": "ロゴ画像"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "questionType": "practical",
+    "practicalLanguage": "html",
+    "question": "%[section]%要素の中に%[h2]%で[お知らせ]を表示してください。",
+    "choices": [],
+    "answer": "<section><h2>お知らせ</h2></section>",
+    "explanation": "意味のあるまとまりには %[section]% 要素を使えます。",
+    "tags": ["HTML", "文書構造"],
+    "htmlRequirements": [
+      {
+        "tag": "section"
+      },
+      {
+        "tag": "h2",
+        "text": "お知らせ"
+      }
+    ]
+  },
+  {
+    "questionType": "practical",
+    "practicalLanguage": "html",
+    "question": "ラベル[メール]と入力欄を関連付けるため、%[for]% 属性が%[mail]%の%[label]%と%[id]%が%[mail]%の%[input]%を書いてください。",
+    "choices": [],
+    "answer": "<label for=\"mail\">メール</label><input id=\"mail\">",
+    "explanation": "%[for]% と %[id]% を同じ値にするとラベルと入力欄を関連付けられます。",
+    "tags": ["HTML", "フォーム"],
+    "htmlRequirements": [
+      {
+        "tag": "label",
+        "text": "メール",
+        "attributes": [
+          {
+            "name": "for",
+            "value": "mail"
+          }
+        ]
+      },
+      {
+        "tag": "input",
+        "attributes": [
+          {
+            "name": "id",
+            "value": "mail"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "questionType": "practical",
+    "practicalLanguage": "html",
+    "question": "[手順1]・[手順2]・[手順3]の__3項目を番号付きリスト__で表示してください。",
+    "choices": [],
+    "answer": "<ol><li>手順1</li><li>手順2</li><li>手順3</li></ol>",
+    "explanation": "番号付きリストは %[ol]%、各項目は %[li]% で表します。",
+    "tags": ["HTML", "リスト"],
+    "htmlRequirements": [
+      {
+        "tag": "ol"
+      },
+      {
+        "tag": "li",
+        "text": "手順1"
+      },
+      {
+        "tag": "li",
+        "text": "手順2"
+      },
+      {
+        "tag": "li",
+        "text": "手順3"
+      }
+    ]
+  }
+]

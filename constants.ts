@@ -1,3 +1,4 @@
+// アプリ共通で使う定数と初期統計値を定義
 import { TimeStats } from "./types.js";
 
 export const LOCAL_STORAGE_KEY = "quiz-app2-category-stats-v1";

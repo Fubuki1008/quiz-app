@@ -1,3 +1,4 @@
+// 問題文のエスケープや簡易マークアップ整形
 export function escapeHtml(text: string): string {
   return text
     .replace(/&/g, "&amp;")
@@ -15,7 +16,7 @@ export function renderMarkedText(text: string): string {
     '<span class="underline">$1</span>'
   );
   const withCodeStyle = underlined.replace(
-    /\[([^\]]+)\]/g,
+    /%\[([^\]]+)\]%/g,
     '<span class="inline-token">[$1]</span>'
   );
 
@@ -26,6 +27,7 @@ export function stripMarkup(text: string): string {
   return text
     .replace(/<br\s*\/?\s*>/gi, " ")
     .replace(/__([^_]+)__/g, "$1")
+    .replace(/%\[([^\]]+)\]%/g, "$1")
     .replace(/\[([^\]]+)\]/g, "$1")
     .replace(/\s+/g, " ")
     .trim();

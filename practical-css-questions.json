@@ -1,0 +1,354 @@
+[
+  {
+    "questionType": "practical",
+    "practicalLanguage": "css",
+    "question": "ボタンの__背景色__を[orange]にしてください。",
+    "choices": [],
+    "answer": "background-color: orange;",
+    "explanation": "背景色は[background-color]で指定します。",
+    "tags": ["CSS", "色"],
+    "practicalBaseHtml": "<button class=\"demo-button\">送信</button>",
+    "practicalSelector": ".demo-button",
+    "cssRequirements": [
+      {
+        "property": "background-color",
+        "value": "orange"
+      }
+    ]
+  },
+  {
+    "questionType": "practical",
+    "practicalLanguage": "css",
+    "question": "見出しの__文字色__を[royalblue]にしてください。",
+    "choices": [],
+    "answer": "color: royalblue;",
+    "explanation": "文字色は[color]プロパティで指定します。",
+    "tags": ["CSS", "色"],
+    "practicalBaseHtml": "<h2 class=\"demo-heading\">お知らせ</h2>",
+    "practicalSelector": ".demo-heading",
+    "cssRequirements": [
+      {
+        "property": "color",
+        "value": "royalblue"
+      }
+    ]
+  },
+  {
+    "questionType": "practical",
+    "practicalLanguage": "css",
+    "question": "カードの__角を丸く__するため、半径[16px]を指定してください。",
+    "choices": [],
+    "answer": "border-radius: 16px;",
+    "explanation": "角丸は[border-radius]で指定します。",
+    "tags": ["CSS", "ボックス"],
+    "practicalBaseHtml": "<div class=\"demo-card\">カード</div>",
+    "practicalSelector": ".demo-card",
+    "cssRequirements": [
+      {
+        "property": "border-radius",
+        "value": "16px"
+      }
+    ]
+  },
+  {
+    "questionType": "practical",
+    "practicalLanguage": "css",
+    "question": "段落__テキストを中央揃え__にしてください。",
+    "choices": [],
+    "answer": "text-align: center;",
+    "explanation": "文字揃えは[text-align]プロパティで制御します。",
+    "tags": ["CSS", "テキスト"],
+    "practicalBaseHtml": "<p class=\"demo-text\">中央にそろう文字列</p>",
+    "practicalSelector": ".demo-text",
+    "cssRequirements": [
+      {
+        "property": "text-align",
+        "value": "center"
+      }
+    ]
+  },
+  {
+    "questionType": "practical",
+    "practicalLanguage": "css",
+    "question": "ボタンの__文字サイズ__を[24px]にしてください。",
+    "choices": [],
+    "answer": "font-size: 24px;",
+    "explanation": "文字サイズは[font-size]で指定します。",
+    "tags": ["CSS", "テキスト"],
+    "practicalBaseHtml": "<button class=\"demo-button\">大きなボタン</button>",
+    "practicalSelector": ".demo-button",
+    "cssRequirements": [
+      {
+        "property": "font-size",
+        "value": "24px"
+      }
+    ]
+  },
+  {
+    "questionType": "practical",
+    "practicalLanguage": "css",
+    "question": "「左右0px」、「下に8px」、「ぼかし:16px」、色は「黒」、透明度:0.15を指定し、カードに薄い__影__を付けてください。",
+    "choices": [],
+    "answer": "box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);",
+    "explanation": "影は[box-shadow]で指定します。",
+    "tags": ["CSS", "ボックス"],
+    "practicalBaseHtml": "<div class=\"demo-card\">影付きカード</div>",
+    "practicalSelector": ".demo-card",
+    "cssRequirements": [
+      {
+        "property": "box-shadow",
+        "value": [
+          "0 8px 16px rgba(0, 0, 0, 0.15)",
+          "0 8px 16px rgb(0 0 0 / 0.15)"
+        ]
+      }
+    ]
+  },
+  {
+    "questionType": "practical",
+    "practicalLanguage": "css",
+    "question": "__Flexレイアウト__にするため、適切なCSSを指定してください。",
+    "choices": [],
+    "answer": "display: flex;",
+    "explanation": "Flexレイアウトを始めるには[display:flex;]を指定します。",
+    "tags": ["CSS", "Flexbox"],
+    "practicalBaseHtml": "<div class=\"demo-row\"><div>1</div><div>2</div></div>",
+    "practicalSelector": ".demo-row",
+    "cssRequirements": [
+      {
+        "property": "display",
+        "value": "flex"
+      }
+    ]
+  },
+  {
+    "questionType": "practical",
+    "practicalLanguage": "css",
+    "question": "図をFlexにし、__アイテムを左右中央に配置__するために適切なプロパティを指定してください。",
+    "choices": [],
+    "answer": "display: flex; justify-content: center;",
+    "explanation": "まず、[display:flex;] でFlexコンテナにし、そのうえで[justify-content]で主軸方向の配置を中央にします。",
+    "tags": ["CSS", "Flexbox"],
+    "practicalBaseHtml": "<div class=\"demo-row\" style=\"width:100%;max-width:320px;\"><div>左</div><div>右</div></div>",
+    "practicalSelector": ".demo-row",
+    "cssRequirements": [
+      {
+        "property": "display",
+        "value": "flex"
+      },
+      {
+        "property": "justify-content",
+        "value": "center"
+      }
+    ]
+  },
+  {
+    "questionType": "practical",
+    "practicalLanguage": "css",
+    "question": "文字の間隔を広げるため、__文字間__を[0.2em]にしてください。",
+    "choices": [],
+    "answer": "letter-spacing: 0.2em;",
+    "explanation": "文字間は[letter-spacing]で調整できます。",
+    "tags": ["CSS", "テキスト"],
+    "practicalBaseHtml": "<p class=\"demo-copy\">SPACING</p>",
+    "practicalSelector": ".demo-copy",
+    "cssRequirements": [
+      {
+        "property": "letter-spacing",
+        "value": "0.2em"
+      }
+    ]
+  },
+  {
+    "questionType": "practical",
+    "practicalLanguage": "css",
+    "question": "カードの__内側__に24pxの余白を追加してください。",
+    "choices": [],
+    "answer": "padding: 24px;",
+    "explanation": "内側余白は[padding]で指定します。",
+    "tags": ["CSS", "ボックス"],
+    "practicalBaseHtml": "<div class=\"demo-card\">余白を広げる</div>",
+    "practicalSelector": ".demo-card",
+    "cssRequirements": [
+      {
+        "property": "padding",
+        "value": "24px"
+      }
+    ]
+  },
+  {
+    "questionType": "practical",
+    "practicalLanguage": "css",
+    "question": "カードの__外側__に20pxの余白を追加してください。",
+    "choices": [],
+    "answer": "margin: 20px;",
+    "explanation": "外側の余白は[margin]で指定します。",
+    "tags": ["CSS", "ボックス"],
+    "practicalBaseHtml": "<div class=\"demo-grid\"><div class=\"demo-card\">余白を広げる</div><div class=\"demo-card\">余白を広げる</div><div class=\"demo-card\">余白を広げる</div><div class=\"demo-card\">余白を広げる</div><div class=\"demo-card\">余白を広げる</div><div class=\"demo-card\">余白を広げる</div><div class=\"demo-card\">余白を広げる</div><div class=\"demo-card\">余白を広げる</div><div class=\"demo-card\">余白を広げる</div></div>",
+    "practicalSelector": ".demo-card",
+    "cssRequirements": [
+      {
+        "property": "margin",
+        "value": "20px"
+      }
+    ]
+  },
+  {
+    "questionType": "practical",
+    "practicalLanguage": "css",
+    "question": "カードの配置を2列に並び替えてください。*カードの大きさは__1:1の比率__で配置してください。",
+    "choices": [],
+    "answer": "grid-template-columns: repeat(2, 1fr);",
+    "explanation": "親要素を[display:grid;]にしたうえで[grid-template-columns:repeat(2, 1fr);]を指定すると、10枚のカードを2列5行で配置できます。",
+    "tags": ["CSS", "Grid"],
+    "practicalBaseHtml": "<div class=\"demo-grid\"><div class=\"demo-card\">カード01</div><div class=\"demo-card\">カード02</div><div class=\"demo-card\">カード03</div><div class=\"demo-card\">カード04</div><div class=\"demo-card\">カード05</div><div class=\"demo-card\">カード06</div><div class=\"demo-card\">カード07</div><div class=\"demo-card\">カード08</div><div class=\"demo-card\">カード09</div><div class=\"demo-card\">カード10</div></div>",
+    "practicalSelector": ".demo-grid",
+    "cssRequirements": [
+      {
+        "property": "grid-template-columns",
+        "value": [
+          "repeat(2, 1fr)",
+          "1fr 1fr"
+        ]
+      }
+    ]
+  },
+  {
+    "questionType": "practical",
+    "practicalLanguage": "css",
+    "question": "親要素に対して__30%の幅__に指定し、__左右中央配置__にしてください。<br>__*上下の余白は0で指定してください__",
+    "choices": [],
+    "answer": "width: 30%; margin: 0 auto;",
+    "explanation": "ブロック要素は[width]で幅を決めたうえで[margin:0 auto;]を指定すると、左右中央に配置できます。",
+    "tags": ["CSS", "レイアウト"],
+    "practicalBaseHtml": "<div class=\"demo-box\"><div class=\"demo-row\" style=\"background-color: #ffebcd;border: 1px solid #000000;\">中央寄せボックス</div></div>",
+    "practicalSelector": ".demo-row",
+    "cssRequirements": [
+      {
+        "property": "width",
+        "value": "30%"
+      },
+      {
+        "property": "margin",
+        "value": "0 auto"
+      }
+    ]
+  },
+  {
+    "questionType": "practical",
+    "practicalLanguage": "css",
+    "question": "本文の__行間(高さ)__を[1.8]にしてください。",
+    "choices": [],
+    "answer": "line-height: 1.8;",
+    "explanation": "行間（高さ）は[line-height]で指定できます。値を[1.8]にすると読みやすさが上がります。",
+    "tags": ["CSS", "タイポグラフィ"],
+    "practicalBaseHtml": "<p class=\"demo-text-line\">これは本文テキストです。読みやすい行間に調整してください。</p>",
+    "practicalSelector": ".demo-text-line",
+    "cssRequirements": [
+      {
+        "property": "line-height",
+        "value": "1.8"
+      }
+    ]
+  },
+  {
+    "questionType": "practical",
+    "practicalLanguage": "css",
+    "question": "テキストに__下線を装飾__してください。",
+    "choices": [],
+    "answer": "text-decoration: underline;",
+    "explanation": "下線は[text-decoration]プロパティで指定します。",
+    "tags": ["CSS", "テキスト"],
+    "practicalBaseHtml": "<p class=\"demo-copy\">UNDERLINE SAMPLE</p>",
+    "practicalSelector": ".demo-copy",
+    "cssRequirements": [
+      {
+        "property": "text-decoration",
+        "value": "underline"
+      }
+    ]
+  },
+  {
+    "questionType": "practical",
+    "practicalLanguage": "css",
+    "question": "__カードの透明度__を[0.8]にしてください。",
+    "choices": [],
+    "answer": "opacity: 0.8;",
+    "explanation": "透明度は[opacity]で指定します。1に近いほど不透明、0に近いほど透明です。",
+    "tags": ["CSS", "ボックス"],
+    "practicalBaseHtml": "<div class=\"demo-card\">透明度確認カード</div>",
+    "practicalSelector": ".demo-card",
+    "cssRequirements": [
+      {
+        "property": "opacity",
+        "value": "0.8"
+      }
+    ]
+  },
+  {
+    "questionType": "practical",
+    "practicalLanguage": "css",
+    "question": "__枠線を点線__にしてください。<br>__*枠線の種類のみを指定してください。__",
+    "choices": [],
+    "answer": "border-style: dashed;",
+    "explanation": "設問は枠線の種類の指定なので[border-style]で指定できます。点線は[dashed]を使います。",
+    "tags": ["CSS", "ボックス"],
+    "practicalBaseHtml": "<div class=\"demo-card\">枠線スタイル確認カード</div>",
+    "practicalSelector": ".demo-card",
+    "cssRequirements": [
+      {
+        "property": "border-style",
+        "value": "dashed"
+      }
+    ]
+  },
+  {
+    "questionType": "practical",
+    "practicalLanguage": "css",
+    "question": "要素の周囲に__カラー#ED1A3D,太さ1pxの実線__に作成してください。",
+    "choices": [],
+    "answer": "border: 1px solid #ED1A3D;",
+    "explanation": "[border]は、太さ・種類・色を1行で指定できるショートハンドです。",
+    "tags": ["CSS", "ボックス"],
+    "practicalBaseHtml": "<div class=\"demo-card\">枠線確認カード</div>",
+    "practicalSelector": ".demo-card",
+    "cssRequirements": [
+      {
+        "property": "border",
+        "value": [
+          "1px solid #ED1A3D",
+          "1px #ED1A3D solid",
+          "solid 1px #ED1A3D",
+          "solid #ED1A3D 1px",
+          "#ED1A3D 1px solid",
+          "#ED1A3D solid 1px"
+        ]
+      }
+    ]
+  },
+  {
+    "questionType": "practical",
+    "practicalLanguage": "css",
+    "question": "親要素に[position:relative;]を指定してある。<br>__positionプロパティ__を使用して、「NEW」ラベルをカードの__右上に配置__してください。",
+    "choices": [],
+    "answer": "position: absolute; top: 0; right: 0;",
+    "explanation": "親要素に[position: relative;]を指定し、子要素に[position: absolute; top: 0; right: 0;]を指定すると、親要素の右上を基準に配置できます。",
+    "tags": ["CSS", "position", "レイアウト"],
+    "practicalBaseHtml": "<div class=\"demo-card-position\" style=\"position:relative;width:220px;min-height:120px;padding:24px;border:1px solid #ddd;background:#fff;box-sizing:border-box;\"><span class=\"demo-badge\" style=\"display:inline-block;padding:6px 10px;border-radius:999px;background:#ff6b35;color:#fff;font-size:12px;font-weight:700;line-height:1;\">NEW</span><p style=\"margin:0 0 8px;font-size:18px;font-weight:700;\">おすすめ商品</p><p style=\"margin:0;color:#555;line-height:1.5;\">今週のピックアップです。</p></div>",
+    "practicalSelector": ".demo-badge",
+    "cssRequirements": [
+      {
+        "property": "position",
+        "value": "absolute"
+      },
+      {
+        "property": "top",
+        "value": "0"
+      },
+      {
+        "property": "right",
+        "value": "0"
+      }
+    ]
+  }
+]

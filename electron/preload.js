@@ -7,6 +7,9 @@ contextBridge.exposeInMainWorld("quizAppApi", {
     loadQuestions(fileName) {
         return ipcRenderer.invoke("quiz:load-questions", fileName);
     },
+    loadBundledQuestions(fileName) {
+        return ipcRenderer.invoke("quiz:load-bundled-questions", fileName);
+    },
     saveQuestions(fileName, questions) {
         return ipcRenderer.invoke("quiz:save-questions", fileName, questions);
     },

@@ -7,6 +7,10 @@ const adminUsername = process.env.QUIZ_ADMIN_USERNAME || "admin";
 const adminPassword = process.env.QUIZ_ADMIN_PASSWORD || "change-me";
 const questionDataDirectoryName = "question-data";
 const categoryDefinitionsFileName = "categories.json";
+const bundledPracticalQuestionFiles = new Set([
+    "practical-html-questions.json",
+    "practical-css-questions.json",
+]);
 
 function normalizeCategoryLabel(label) {
     return typeof label === "string" ? label.replace(/\s+/g, " ").trim() : "";
@@ -45,25 +49,7 @@ function getQuestionFilePath(fileName) {
     return path.join(getQuestionDataDirectoryPath(), fileName);
 }
 
-async function ensureCategoryDefinitionsFileExists() {
-    const questionDataDirectoryPath = getQuestionDataDirectoryPath();
-    const definitionsPath = getCategoryDefinitionsPath();
-
-    await fs.mkdir(questionDataDirectoryPath, { recursive: true });
-
-    try {
-        await fs.access(definitionsPath);
-    } catch (_error) {
-        const bundledContent = await fs.readFile(getBundledCategoryDefinitionsPath(), "utf-8");
-        await fs.writeFile(definitionsPath, bundledContent, "utf-8");
-    }
-
-    return definitionsPath;
-}
-
-async function loadCategoryDefinitions() {
-    const definitionsPath = await ensureCategoryDefinitionsFileExists();
-    const raw = await fs.readFile(definitionsPath, "utf-8");
+function parseCategoryDefinitions(raw) {
     const parsed = JSON.parse(raw);
 
     if (!Array.isArray(parsed)) {
@@ -77,6 +63,53 @@ async function loadCategoryDefinitions() {
             typeof item?.fileName === "string"
         );
     });
+}
+
+async function loadBundledCategoryDefinitions() {
+    const raw = await fs.readFile(getBundledCategoryDefinitionsPath(), "utf-8");
+    return parseCategoryDefinitions(raw);
+}
+
+async function syncBundledCategoryDefinitions() {
+    const questionDataDirectoryPath = getQuestionDataDirectoryPath();
+    const definitionsPath = getCategoryDefinitionsPath();
+
+    await fs.mkdir(questionDataDirectoryPath, { recursive: true });
+
+    const bundledCategories = await loadBundledCategoryDefinitions();
+
+    try {
+        await fs.access(definitionsPath);
+    } catch (_error) {
+        const bundledContent = `${JSON.stringify(bundledCategories, null, 2)}\n`;
+        await fs.writeFile(definitionsPath, bundledContent, "utf-8");
+        return definitionsPath;
+    }
+
+    const raw = await fs.readFile(definitionsPath, "utf-8");
+    const existingCategories = parseCategoryDefinitions(raw);
+    const existingFileNames = new Set(existingCategories.map((category) => category.fileName));
+    const missingBundledCategories = bundledCategories.filter(
+        (category) => !existingFileNames.has(category.fileName)
+    );
+
+    if (missingBundledCategories.length > 0) {
+        const nextCategories = [...existingCategories, ...missingBundledCategories];
+        const nextContent = `${JSON.stringify(nextCategories, null, 2)}\n`;
+        await fs.writeFile(definitionsPath, nextContent, "utf-8");
+    }
+
+    return definitionsPath;
+}
+
+async function ensureCategoryDefinitionsFileExists() {
+    return syncBundledCategoryDefinitions();
+}
+
+async function loadCategoryDefinitions() {
+    const definitionsPath = await ensureCategoryDefinitionsFileExists();
+    const raw = await fs.readFile(definitionsPath, "utf-8");
+    return parseCategoryDefinitions(raw);
 }
 
 async function saveCategoryDefinitions(categories) {
@@ -145,6 +178,16 @@ ipcMain.handle("quiz:load-questions", async (_event, fileName) => {
 
     const filePath = await ensureQuestionFileExists(fileName);
     const fileContent = await fs.readFile(filePath, "utf-8");
+    return JSON.parse(fileContent);
+});
+
+ipcMain.handle("quiz:load-bundled-questions", async (_event, fileName) => {
+    if (!bundledPracticalQuestionFiles.has(fileName)) {
+        throw new Error("Unsupported bundled question file");
+    }
+
+    const bundledFilePath = getBundledQuestionFilePath(fileName);
+    const fileContent = await fs.readFile(bundledFilePath, "utf-8");
     return JSON.parse(fileContent);
 });
 

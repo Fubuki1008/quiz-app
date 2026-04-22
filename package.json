@@ -1,6 +1,6 @@
 {
   "name": "quiz-app",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "productName": "Quiz App",
   "main": "electron/main.js",
   "scripts": {
@@ -20,11 +20,13 @@
     "typescript": "^5.7.3"
   },
   "devDependencies": {
+    "@electron/notarize": "^2.5.0",
     "electron": "^36.0.0",
     "electron-builder": "^24.13.3"
   },
   "build": {
     "appId": "com.tsujinofukiju.quizapp",
+    "afterSign": "scripts/notarize.mjs",
     "directories": {
       "output": "release"
     },
@@ -38,6 +40,9 @@
       "html-questions.json",
       "css-questions.json",
       "js-questions.json",
+      "php-questions.json",
+      "practical-html-questions.json",
+      "practical-css-questions.json",
       "package.json"
     ],
     "mac": {
@@ -46,7 +51,11 @@
         "dmg"
       ],
       "category": "public.app-category.education",
-      "icon": "image/quiz_icon_512x512.png"
+      "icon": "image/quiz_icon_512x512.png",
+      "hardenedRuntime": true,
+      "gatekeeperAssess": false,
+      "entitlements": "electron/entitlements.mac.plist",
+      "entitlementsInherit": "electron/entitlements.mac.plist"
     }
   }
 }

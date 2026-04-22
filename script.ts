@@ -1,48 +1,54 @@
-import { loadCategories, loadQuestions } from "./api.js";
+// アプリ全体の初期化と DOM 要素の組み立てを管理
 import {
-  CategoryAccuracyElements,
-  DashboardElements,
-  ExplanationElements,
-  ResultTabElements,
-  WeakTagAnalysisElements,
-  createWrongNote,
-  extractTags,
-  renderCategoryAccuracy,
-  renderExplanationList,
-  renderLearningDashboard,
-  renderWeakTagAnalysis,
-  resetStoredStats,
-  setActiveResultTab,
-  setActiveWeakTagTab,
-  updateCategoryStats,
-  updateTimeStats,
-  updateWeakTagStats,
+  type CategoryAccuracyElements,
+  type DashboardElements,
+  type ExplanationElements,
+  type ResultTabElements,
+  type WeakTagAnalysisElements,
 } from "./analytics.js";
-import { QUESTION_COUNT } from "./constants.js";
+import { registerQuizEvents } from "./quiz-events.js";
 import { createQuestionEditor } from "./question-editor.js";
-import { createChoiceSet, shuffleArray } from "./quiz-core.js";
-import { renderMarkedText } from "./text-format.js";
-import { AnswerRecord, CategoryDefinition, Question, QuestionFileName } from "./types.js";
-
-let questions: Question[] = [];
-let selectedQuestions: Question[] = [];
-let correctList: boolean[] = [];
-let answerRecords: AnswerRecord[] = [];
-let currentQuestionIndex = 0;
-let score = 0;
-let categories: CategoryDefinition[] = [];
-let categoryLabelMap: Record<string, string> = {};
-let currentCategory: QuestionFileName = "";
-let reviewMode = false;
-let questionStartAt = 0;
-let popupClass = "";
+import {
+  createQuizSession,
+  type QuizSessionElements,
+} from "./quiz-session.js";
+import { type PracticalQuizElements } from "./practical-quiz.js";
+import { type StartModeElements } from "./quiz-start.js";
 
 const startScreen = document.getElementById("startScreen") as HTMLElement;
 const backToStartButton = document.getElementById("backToStartButton") as HTMLButtonElement;
 const startCategoryButtons = document.getElementById("startCategoryButtons") as HTMLElement;
+const practicalCategoryButtons = document.getElementById(
+  "practicalCategoryButtons"
+) as HTMLElement;
+const showKnowledgeModeButton = document.getElementById(
+  "showKnowledgeModeButton"
+) as HTMLButtonElement;
+const showPracticalModeButton = document.getElementById(
+  "showPracticalModeButton"
+) as HTMLButtonElement;
+const knowledgeStartPanel = document.getElementById("knowledgeStartPanel") as HTMLElement;
+const practicalStartPanel = document.getElementById("practicalStartPanel") as HTMLElement;
 const quizContainer = document.getElementById("quizContainer") as HTMLElement;
+const knowledgeWorkspace = document.getElementById("knowledgeWorkspace") as HTMLElement;
+const practicalWorkspace = document.getElementById("practicalWorkspace") as HTMLElement;
 const questionEl = document.getElementById("question") as HTMLElement;
 const choicesEl = document.getElementById("choices") as HTMLElement;
+const practicalQuestionText = document.getElementById("practicalQuestionText") as HTMLElement;
+const practicalInputLabel = document.getElementById("practicalInputLabel") as HTMLElement;
+const practicalCodeTemplate = document.getElementById("practicalCodeTemplate") as HTMLElement;
+const practicalAnswerInput = document.getElementById(
+  "practicalAnswerInput"
+) as HTMLTextAreaElement;
+const practicalSubmitButton = document.getElementById(
+  "practicalSubmitButton"
+) as HTMLButtonElement;
+const practicalPreviewFrame = document.getElementById(
+  "practicalPreviewFrame"
+) as HTMLIFrameElement;
+const practicalPreviewStatus = document.getElementById(
+  "practicalPreviewStatus"
+) as HTMLElement;
 const scoreEl = document.getElementById("score") as HTMLElement;
 const popup = document.getElementById("resultPopup") as HTMLElement;
 const finalMessageEl = document.getElementById("finalMessage") as HTMLElement;
@@ -55,6 +61,28 @@ const downloadNoteButton = document.getElementById("downloadNoteButton") as HTML
 const retryWrongButton = document.getElementById("retryWrongButton") as HTMLButtonElement;
 const retryAllButton = document.getElementById("retryAllButton") as HTMLButtonElement;
 const resetStatsButton = document.getElementById("resetStatsButton") as HTMLButtonElement;
+
+const startModeElements: StartModeElements = {
+  showKnowledgeModeButton,
+  showPracticalModeButton,
+  knowledgeStartPanel,
+  practicalStartPanel,
+  quizContainer,
+  quizTitle,
+  startCategoryButtons,
+  practicalCategoryButtons,
+};
+
+const practicalQuizElements: PracticalQuizElements = {
+  knowledgeWorkspace,
+  practicalWorkspace,
+  practicalQuestionText,
+  practicalInputLabel,
+  practicalCodeTemplate,
+  practicalAnswerInput,
+  practicalPreviewFrame,
+  practicalPreviewStatus,
+};
 
 const resultTabElements: ResultTabElements = {
   tabAnalyticsButton: document.getElementById("tabAnalyticsButton") as HTMLButtonElement,
@@ -142,329 +170,69 @@ const questionEditor = createQuestionEditor({
   deleteQuestionButton: document.getElementById("deleteQuestionButton") as HTMLButtonElement,
 });
 
+const quizSessionElements: QuizSessionElements = {
+  startScreen,
+  quizContainer,
+  knowledgeWorkspace,
+  practicalWorkspace,
+  questionEl,
+  choicesEl,
+  scoreEl,
+  popup,
+  finalMessageEl,
+  finalScoreEl,
+  progressEl,
+  quizTitle,
+  wrongNoteText,
+  retryWrongButton,
+  practicalAnswerInput,
+  startCategoryButtons,
+};
+
+const session = createQuizSession({
+  elements: quizSessionElements,
+  startModeElements,
+  practicalQuizElements,
+  resultTabElements,
+  explanationElements,
+  categoryAccuracyElements,
+  dashboardElements,
+  weakTagElements,
+  questionEditor,
+});
+
 quizContainer.classList.add("hidden");
 popup.classList.add("hidden");
 
-backToStartButton.onclick = () => returnToStartScreen();
-
-resultTabElements.tabAnalyticsButton.onclick = () =>
-  setActiveResultTab(resultTabElements, "analytics");
-resultTabElements.tabExplanationButton.onclick = () =>
-  setActiveResultTab(resultTabElements, "explanation");
-resultTabElements.tabWrongNoteButton.onclick = () =>
-  setActiveResultTab(resultTabElements, "wrongNote");
-weakTagElements.weakTagHistoryTabButton.onclick = () =>
-  setActiveWeakTagTab(weakTagElements, "history");
-weakTagElements.weakTagCurrentTabButton.onclick = () =>
-  setActiveWeakTagTab(weakTagElements, "current");
-weakTagElements.weakTagSortSelect.onchange = () =>
-  renderWeakTagAnalysis(weakTagElements, answerRecords);
-weakTagElements.collapsePerfectTagsToggle.onchange = () =>
-  renderWeakTagAnalysis(weakTagElements, answerRecords);
-
-setActiveWeakTagTab(weakTagElements, "current");
-window.addEventListener("quiz-categories-changed", (event) => {
-  const customEvent = event as CustomEvent<{ categories: CategoryDefinition[] }>;
-  applyCategories(customEvent.detail.categories);
-});
-
-void initializeApp();
-
-retryAllButton.onclick = () => {
-  location.reload();
-};
-
-retryWrongButton.onclick = () => {
-  startReviewMode();
-};
-
-resetStatsButton.onclick = () => {
-  const confirmed = window.confirm(
-    "分野別正答率の累積履歴をリセットします。よろしいですか？"
-  );
-  if (!confirmed) {
-    return;
+registerQuizEvents(
+  {
+    backToStartButton,
+    showKnowledgeModeButton,
+    showPracticalModeButton,
+    practicalSubmitButton,
+    practicalAnswerInput,
+    copyNoteButton,
+    downloadNoteButton,
+    retryWrongButton,
+    retryAllButton,
+    resetStatsButton,
+  },
+  resultTabElements,
+  weakTagElements,
+  {
+    onReturnToStart: () => session.returnToStartScreen(),
+    onSetStartMode: (mode) => session.setStartMode(mode),
+    onSubmitPracticalAnswer: () => session.submitPracticalAnswer(),
+    onSyncPracticalPreview: () => session.syncPracticalAnswerPreview(),
+    onStartReviewMode: () => session.startReviewMode(),
+    onRetryAll: () => session.retryAll(),
+    onRefreshWeakTagAnalysis: () => session.refreshWeakTagAnalysis(),
+    onResetStats: () => session.resetStats(),
+    onCopyWrongNote: () => session.copyWrongNote(),
+    onDownloadWrongNote: () => session.downloadWrongNote(),
+    onCategoriesChanged: (categories) => session.handleCategoriesChanged(categories),
   }
+);
 
-  resetStoredStats();
+void session.initializeApp();
 
-  const currentTotal = selectedQuestions.length;
-  renderCategoryAccuracy(
-    categoryAccuracyElements,
-    categoryLabelMap,
-    currentCategory,
-    score,
-    currentTotal
-  );
-  renderLearningDashboard(dashboardElements, answerRecords);
-  renderWeakTagAnalysis(weakTagElements, answerRecords);
-  resetStatsButton.textContent = "履歴をリセットしました";
-
-  setTimeout(() => {
-    resetStatsButton.textContent = "履歴リセット";
-  }, 1400);
-};
-
-copyNoteButton.onclick = async () => {
-  if (!wrongNoteText.value.trim()) {
-    return;
-  }
-
-  try {
-    await navigator.clipboard.writeText(wrongNoteText.value);
-    copyNoteButton.textContent = "コピー完了";
-    setTimeout(() => {
-      copyNoteButton.textContent = "ノートをコピー";
-    }, 1200);
-  } catch (error) {
-    console.error("コピーに失敗:", error);
-  }
-};
-
-downloadNoteButton.onclick = () => {
-  if (!wrongNoteText.value.trim()) {
-    return;
-  }
-
-  const categoryLabel = getCategoryLabel(currentCategory) ?? "Quiz";
-  const now = new Date();
-  const dateText = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(
-    2,
-    "0"
-  )}-${String(now.getDate()).padStart(2, "0")}`;
-  const blob = new Blob([wrongNoteText.value], { type: "text/plain" });
-  const url = URL.createObjectURL(blob);
-  const anchor = document.createElement("a");
-  anchor.href = url;
-  anchor.download = `wrong-note-${categoryLabel}-${dateText}.md`;
-  document.body.appendChild(anchor);
-  anchor.click();
-  document.body.removeChild(anchor);
-  URL.revokeObjectURL(url);
-};
-
-async function initializeApp() {
-  try {
-    const loadedCategories = await loadCategories();
-    applyCategories(loadedCategories);
-  } catch (error) {
-    console.error("問題種別の読み込みに失敗:", error);
-    startCategoryButtons.innerHTML = "<p>問題種別の読み込みに失敗しました。</p>";
-  }
-
-  await questionEditor.init();
-}
-
-function applyCategories(nextCategories: CategoryDefinition[]) {
-  categories = nextCategories;
-  categoryLabelMap = Object.fromEntries(
-    categories.map((category) => [category.fileName, category.label])
-  );
-
-  if (!currentCategory || !categoryLabelMap[currentCategory]) {
-    currentCategory = categories[0]?.fileName ?? "";
-  }
-
-  renderStartCategoryButtons();
-}
-
-function renderStartCategoryButtons() {
-  startCategoryButtons.innerHTML = "";
-
-  if (categories.length === 0) {
-    const message = document.createElement("p");
-    message.textContent = "問題種別がありません。管理画面から追加してください。";
-    startCategoryButtons.appendChild(message);
-    return;
-  }
-
-  categories.forEach((category) => {
-    const button = document.createElement("button");
-    button.type = "button";
-    button.textContent = `${category.label}クイズ`;
-    button.onclick = () => startQuiz(category.fileName, `${category.label}クイズ`);
-    startCategoryButtons.appendChild(button);
-  });
-}
-
-function getCategoryLabel(fileName: QuestionFileName): string {
-  return categoryLabelMap[fileName] ?? fileName;
-}
-
-function startQuiz(categoryFile: QuestionFileName, quizTitleText: string) {
-  currentCategory = categoryFile;
-  reviewMode = false;
-  score = 0;
-  currentQuestionIndex = 0;
-  correctList = [];
-  answerRecords = [];
-
-  scoreEl.textContent = `スコア: ${score}`;
-  startScreen.classList.add("hidden");
-  quizContainer.classList.remove("hidden");
-  popup.className = "popup hidden";
-
-  quizTitle.textContent = quizTitleText;
-  void fetchQuestions();
-}
-
-function returnToStartScreen() {
-  questions = [];
-  selectedQuestions = [];
-  correctList = [];
-  answerRecords = [];
-  currentQuestionIndex = 0;
-  score = 0;
-  reviewMode = false;
-  popupClass = "";
-
-  scoreEl.textContent = "スコア: 0";
-  progressEl.textContent = `第1問 / ${QUESTION_COUNT}問`;
-  choicesEl.innerHTML = "";
-  questionEl.innerHTML = "";
-  wrongNoteText.value = "";
-  popup.className = "popup hidden";
-  quizContainer.classList.add("hidden");
-  startScreen.classList.remove("hidden");
-  quizTitle.textContent = "クイズを選択してください";
-}
-
-async function fetchQuestions() {
-  try {
-    const data = await loadQuestions(currentCategory);
-    questions = data.map((question) => ({
-      ...question,
-      choices: createChoiceSet(question.choices, question.answer),
-    }));
-    selectedQuestions = shuffleArray(questions).slice(0, QUESTION_COUNT);
-    showQuestion();
-  } catch (error) {
-    console.error("データ読み込み失敗:", error);
-  }
-}
-
-function showQuestion() {
-  if (currentQuestionIndex >= selectedQuestions.length) {
-    showFinalResult();
-    return;
-  }
-
-  const modeLabel = reviewMode ? "（復習）" : "";
-  progressEl.textContent = `第${currentQuestionIndex + 1}問 / ${
-    selectedQuestions.length
-  }問 ${modeLabel}`;
-
-  const currentQuestion = selectedQuestions[currentQuestionIndex];
-  questionEl.innerHTML = renderMarkedText(currentQuestion.question);
-
-  choicesEl.innerHTML = "";
-  currentQuestion.choices.forEach((choice) => {
-    const button = document.createElement("button");
-    button.textContent = choice;
-    button.onclick = () => checkAnswer(choice);
-    choicesEl.appendChild(button);
-  });
-
-  questionStartAt = performance.now();
-}
-
-function checkAnswer(selected: string) {
-  const currentQuestion = selectedQuestions[currentQuestionIndex];
-  const isCorrect = selected === currentQuestion.answer;
-
-  correctList[currentQuestionIndex] = isCorrect;
-  answerRecords.push({
-    question: currentQuestion,
-    selected,
-    isCorrect,
-    tags: extractTags(currentQuestion, currentCategory, categoryLabelMap),
-    elapsedMs: Math.max(0, performance.now() - questionStartAt),
-  });
-
-  if (isCorrect) {
-    score++;
-    scoreEl.textContent = `スコア: ${score}`;
-  }
-
-  currentQuestionIndex++;
-  showQuestion();
-}
-
-function showFinalResult() {
-  const total = selectedQuestions.length;
-  const wrongRecords = answerRecords.filter((record) => !record.isCorrect);
-
-  if (!reviewMode) {
-    updateCategoryStats(currentCategory, score, total);
-    updateWeakTagStats(answerRecords);
-    updateTimeStats(answerRecords);
-  }
-
-  renderExplanationList(explanationElements, selectedQuestions, correctList, answerRecords);
-  renderCategoryAccuracy(categoryAccuracyElements, categoryLabelMap, currentCategory, score, total);
-  renderLearningDashboard(dashboardElements, answerRecords);
-  renderWeakTagAnalysis(weakTagElements, answerRecords);
-  wrongNoteText.value = createWrongNote(
-    wrongRecords,
-    score,
-    total,
-    currentCategory,
-    categoryLabelMap
-  );
-  retryWrongButton.style.display = wrongRecords.length > 0 ? "inline-block" : "none";
-
-  if (reviewMode) {
-    finalMessageEl.textContent =
-      wrongRecords.length === 0
-        ? "復習クリア！苦手問題を克服できました"
-        : "復習モード終了。もう一度復習できます";
-  } else if (score <= 2) {
-    finalMessageEl.textContent = "出直してこい！";
-    popupClass = "low-score";
-  } else if (score <= 4) {
-    finalMessageEl.textContent = "う〜ん・・・";
-    popupClass = "mid-score";
-  } else if (score <= 6) {
-    finalMessageEl.textContent = "及第点";
-    popupClass = "pass-score";
-  } else if (score <= 8) {
-    finalMessageEl.textContent = "良い感じ！";
-    popupClass = "pass-score";
-  } else {
-    finalMessageEl.textContent = "素晴らしい！完璧！";
-    popupClass = "high-score";
-  }
-
-  if (reviewMode && wrongRecords.length === 0) {
-    popupClass = "high-score";
-  }
-
-  finalScoreEl.textContent = `最終スコア: ${score} / ${total}`;
-  popup.className = `popup visible ${popupClass}`;
-  setActiveResultTab(resultTabElements, "analytics");
-  setActiveWeakTagTab(weakTagElements, "current");
-}
-
-function startReviewMode() {
-  const wrongQuestions = answerRecords
-    .filter((record) => !record.isCorrect)
-    .map((record) => record.question);
-
-  if (wrongQuestions.length === 0) {
-    return;
-  }
-
-  reviewMode = true;
-  selectedQuestions = shuffleArray(wrongQuestions);
-  currentQuestionIndex = 0;
-  score = 0;
-  correctList = [];
-  answerRecords = [];
-  scoreEl.textContent = `スコア: ${score}`;
-
-  popup.className = "popup hidden";
-  quizContainer.classList.remove("hidden");
-  quizTitle.textContent = `${getCategoryLabel(currentCategory)} 復習モード`;
-
-  showQuestion();
-}

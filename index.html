@@ -7,14 +7,6 @@
   <title>クイズアプリ</title>
   <link rel="stylesheet" href="./css/ress.css">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Rampart+One&display=swap" rel="stylesheet">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Train+One&display=swap" rel="stylesheet">
-
   <link rel="stylesheet" href="./css/style.css" />
 </head>
 
@@ -33,8 +25,23 @@
     <p>
       <span class="easy">とてもかんたん</span><br />30個ある問題の中からランダムに10問出題されます。<br />全問正解を目指そう！
     </p>
-    <p>問題ジャンルを選択してください</p>
-    <div id="startCategoryButtons" class="start-category-buttons"></div>
+    <p>まずは学習モードを選択してください</p>
+    <div class="mode-selector" aria-label="学習モード切替">
+      <button id="showKnowledgeModeButton" class="mode-button active" type="button">知識問題</button>
+      <button id="showPracticalModeButton" class="mode-button" type="button">実技問題</button>
+    </div>
+
+    <section id="knowledgeStartPanel" class="start-mode-panel">
+      <p class="start-panel-copy">4択の知識問題で理解度を確認します。</p>
+      <div id="startCategoryButtons" class="start-category-buttons"></div>
+    </section>
+
+    <section id="practicalStartPanel" class="start-mode-panel hidden">
+      <p class="start-panel-copy">
+        左側でコードを入力し、右側のプレビューを見ながら HTML / CSS の実技問題に挑戦できます。
+      </p>
+      <div id="practicalCategoryButtons" class="start-category-buttons"></div>
+    </section>
 
     <div id="editorEntry" class="editor-entry hidden">
       <button id="openEditorButton" type="button">問題を管理する</button>
@@ -159,17 +166,39 @@
   <!-- クイズ画面 -->
   <div id="quizContainer" class="hidden">
     <p id="progress">第1問 / 10問</p>
-    <!-- <img src="./image/e0723_1.png" alt=""> -->
-    <div class="q-img">
-      <p id="question"></p>
+    <div id="knowledgeWorkspace">
+      <div class="q-area">
+        <p id="question"></p>
+      </div>
+      <div>
+        <div id="choices"></div>
+      </div>
     </div>
-    <div>
 
-      <!-- 何問目か表記 -->
+    <div id="practicalWorkspace" class="practical-workspace hidden">
+      <section class="practical-panel practical-editor-panel" aria-label="実技問題入力">
+        <div class="practical-panel-header">
+          <h2>問題と入力</h2>
+          <p id="practicalInputLabel" class="practical-input-label">コードを入力</p>
+        </div>
+        <div id="practicalQuestionText" class="practical-question-text"></div>
+        <pre id="practicalCodeTemplate" class="practical-code"></pre>
+        <textarea id="practicalAnswerInput" class="practical-answer-input" rows="10" placeholder="ここにコードを入力"></textarea>
+        <div class="practical-actions">
+          <button id="practicalSubmitButton" type="button">この回答で判定</button>
+        </div>
+      </section>
 
-      <div id="choices"></div>
-      <p id="score">スコア: 0</p>
+      <section class="practical-panel practical-preview-panel" aria-label="実技問題プレビュー">
+        <div class="practical-panel-header">
+          <h2>プレビュー</h2>
+          <p id="practicalPreviewStatus" class="practical-preview-status">入力中の内容を反映します</p>
+        </div>
+        <iframe id="practicalPreviewFrame" class="practical-preview-frame" sandbox=""></iframe>
+      </section>
     </div>
+
+    <p id="score">スコア: 0</p>
   </div>
 
   <!-- 終了時のカスタムポップアップ -->
@@ -180,11 +209,11 @@
 
       <div class="result-tab-nav" role="tablist" aria-label="結果表示タブ">
         <button id="tabAnalyticsButton" class="tab-button active" type="button" role="tab" aria-selected="true"
-          aria-controls="analyticsPanel">分野別正答率</button>
+          aria-controls="analyticsPanel">正答率</button>
         <button id="tabExplanationButton" class="tab-button" type="button" role="tab" aria-selected="false"
-          aria-controls="explanationTabPanel">問題と解説</button>
+          aria-controls="explanationTabPanel">解説</button>
         <button id="tabWrongNoteButton" class="tab-button" type="button" role="tab" aria-selected="false"
-          aria-controls="wrongNotePanel">間違いノート</button>
+          aria-controls="wrongNotePanel">ノート</button>
       </div>
 
       <div class="result-tab-panels">

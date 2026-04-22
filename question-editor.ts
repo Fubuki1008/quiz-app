@@ -1,3 +1,4 @@
+// 管理画面でのカテゴリ・問題編集 UI を管理
 import {
   clearUserData,
   createCategory,

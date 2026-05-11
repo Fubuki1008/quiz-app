@@ -1,3 +1,4 @@
+// クイズ進行状態を管理し、出題・採点・結果反映を統括する
 import { loadCategories, loadQuestions } from "./api.js";
 import {
   CategoryAccuracyElements,

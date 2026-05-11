@@ -1,3 +1,4 @@
+// 画面上の操作イベントを登録し、各ハンドラーへ橋渡しする
 import {
   setActiveResultTab,
   setActiveWeakTagTab,
